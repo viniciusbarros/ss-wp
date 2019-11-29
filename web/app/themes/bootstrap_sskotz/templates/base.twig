@@ -1,0 +1,49 @@
+{% block html_head_container %}
+
+	{% include 'html-header.twig' %}
+	{% block head %}{% endblock %}
+</head>{% endblock %}<body class="{{body_class}}" data-template="base.twig">
+<div class="wrapper">
+	<div class="canvas">
+		<header class="header">
+			{% block header %}
+				<div class="nav">
+					<nav id="nav-main" class="navbar navbar-expand-lg navbar-light" role="navigation">
+						{% include "menu.twig" with {'items': menu.get_items} %}
+					</nav>
+					<!-- #nav -->
+				</div>
+				<div class="parallex parallex-bg">
+					<div class="container-fluid d-flex vh-80">
+						<div class="row justify-content-center align-items-center text-center mx-auto">
+							<div class="jumbotron-fluid col-12 col-sm-12 col-md-10 col-lg-12 col-xl-12 text-center">
+								<img src="{{ site.theme.link }}/assets/images/logo.png" class="logo-jumbotron">
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endblock %}
+		</header>
+		<main id="content" role="main" class="container">
+			<div class="wrapper {{sidebar_class}}">
+				{% block content %}
+					Sorry, no content
+				{% endblock %}
+			</div>
+			{% if sidebar %}
+				<aside class="layout-sidebar">
+					{{sidebar}}
+				</aside>
+			{% endif %}
+		</main>
+		{% block footer %}
+			<footer class="py-4 text-white-50 sticky-footer">
+				<div class="container text-center">
+					<small>{% include 'footer.twig' %}
+						Your Website</small>
+				</div>
+			</footer>
+			{{ function('wp_footer') }}
+		{% endblock %}
+	</div>
+</div></body></html>

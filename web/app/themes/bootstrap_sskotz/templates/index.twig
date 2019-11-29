@@ -1,0 +1,419 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<section class="news-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3 text-center">
+                <h2 class="text-uppercase text-white">Novidades</h2>
+                <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero
+                    voluptatem.</p>
+            </div>
+            <div class="col-12">
+                <div class="col-12 mb-3">
+                    <nav class="pd-navigation tabs-index">
+                        <ul class="nav" role="tablist">
+                            <li role="menuitem"><a href="" data-target="#tab-allposts" data-toggle="tab">Todas
+                                    publicações</a></li>
+                            <li role="menuitem"><a href="" data-target="#tab-att" data-toggle="tab">Atualizações</a>
+                            </li>
+                            <li role="menuitem"><a href="" data-target="#tab-events" data-toggle="tab">Eventos</a></li>
+                            <li role="menuitem"><a href="" data-target="#tab-activity" data-toggle="tab">Atividades</a>
+                            </li>
+                            <li role="menuitem"><a href="" data-target="#tab-banner" data-toggle="tab">Banners</a></li>
+                        </ul>
+                    </nav>
+                    <div id="tabsJustifiedContent" class="tab-content mt-3">
+                        <div id="tab-allposts" class="tab-pane fade active show">
+                            <div class="row align-items-center">
+                                <div class="col-12 mb-3">
+                                    <h2 class="text-uppercase text-left text-white">#Publicações</h2>
+                                </div>
+                                {% for post in public %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                                    <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                                        <div class="post-card-image-link">
+                                            <img src="{{ post.post_img }}" class="post-card-image">
+                                        </div>
+                                        <div class="post-card-content">
+                                            <div class="post-card-content-link">
+                                                <header class="post-card-header">
+                                                    <span class="post-card-tags">
+                                                        {% for category in post.post_category %}
+                                                            {{category.name}}
+                                                        {% endfor %}
+                                                    </span>
+                                                    <h2 class="post-card-title">{{ post.post_title }}</h2>
+                                                </header>
+                                                <section class="post-card-excerpt">
+                                                    <p>{{ post.post_desc }}</p>
+                                                </section>
+                                            </div>
+                                            <footer class="post-card-meta">
+                                                <ul class="author-list">
+                                                    <li class="author-list-item">
+                                                        <a href="#" class="static-avatar">
+                                                            <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            <span class="reading-time">{{ post.post_date }}</span>
+                                            </footer>
+                                        </div>
+                                    </article>
+                                </div>
+                                {% endfor %}
+                                <div class="col-12 justify-content-center load-div mt-5">
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/news">Ver mais</a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div id="tab-att" class="tab-pane fade">
+                            <div class="row align-items-center">
+                                <div class="col-12 mb-3">
+                                    <h2 class="text-uppercase text-left text-white">#Atualizações</h2>
+                                </div>
+                                {% for post in att %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                                            <div class="post-card-image-link">
+                                                <img src="{{ post.post_img }}" class="post-card-image">
+                                            </div>
+                                            <div class="post-card-content">
+                                                <div class="post-card-content-link">
+                                                    <header class="post-card-header">
+                                                        <span class="post-card-tags">
+                                                            {% for category in post.post_category %}
+                                                                {{category.name}}
+                                                            {% endfor %}
+                                                        </span>
+                                                        <h2 class="post-card-title">{{ post.post_title }}</h2>
+                                                    </header>
+                                                    <section class="post-card-excerpt">
+                                                        <p>{{ post.post_desc }}</p>
+                                                    </section>
+                                                </div>
+                                                <footer class="post-card-meta">
+                                                    <ul class="author-list">
+                                                        <li class="author-list-item">
+                                                            <a href="#" class="static-avatar">
+                                                                <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                <span class="reading-time">{{ post.post_date }}</span>
+                                                </footer>
+                                            </div>
+                                        </article>
+                                    </div>
+                                {% endfor %}
+                                <div class="col-12 justify-content-center load-div mt-5">
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/update">Ver mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-events" class="tab-pane fade">
+                            <div class="row align-items-center">
+                                <div class="col-12 mb-3">
+                                    <h2 class="text-uppercase text-left text-white">#Eventos</h2>
+                                </div>
+                                {% for post in event %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                                            <div class="post-card-image-link">
+                                                <img src="{{ post.post_img }}" class="post-card-image">
+                                            </div>
+                                            <div class="post-card-content">
+                                                <div class="post-card-content-link">
+                                                    <header class="post-card-header">
+                                                        <span class="post-card-tags">
+                                                            {% for category in post.post_category %}
+                                                                {{category.name}}
+                                                            {% endfor %}
+                                                        </span>
+                                                        <h2 class="post-card-title">{{ post.post_title }}</h2>
+                                                    </header>
+                                                    <section class="post-card-excerpt">
+                                                        <p>{{ post.post_desc }}</p>
+                                                    </section>
+                                                </div>
+                                                <footer class="post-card-meta">
+                                                    <ul class="author-list">
+                                                        <li class="author-list-item">
+                                                            <a href="#" class="static-avatar">
+                                                                <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                <span class="reading-time">{{ post.post_date }}</span>
+                                                </footer>
+                                            </div>
+                                        </article>
+                                    </div>
+                                {% endfor %}
+                                <div class="col-12 justify-content-center load-div mt-5">
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/event">Ver mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-activity" class="tab-pane fade">
+                            <div class="row align-items-center">
+                                <div class="col-12 mb-3">
+                                    <h2 class="text-uppercase text-left text-white">#Atividades</h2>
+                                </div>
+                                {% for post in activity %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                                            <div class="post-card-image-link">
+                                                <img src="{{ post.post_img }}" class="post-card-image">
+                                            </div>
+                                            <div class="post-card-content">
+                                                <div class="post-card-content-link">
+                                                    <header class="post-card-header">
+                                                        <span class="post-card-tags">
+                                                            {% for category in post.post_category %}
+                                                                {{category.name}}
+                                                            {% endfor %}
+                                                        </span>
+                                                        <h2 class="post-card-title">{{ post.post_title }}</h2>
+                                                    </header>
+                                                    <section class="post-card-excerpt">
+                                                        <p>{{ post.post_desc }}</p>
+                                                    </section>
+                                                </div>
+                                                <footer class="post-card-meta">
+                                                    <ul class="author-list">
+                                                        <li class="author-list-item">
+                                                            <a href="#" class="static-avatar">
+                                                                <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                <span class="reading-time">{{ post.post_date }}</span>
+                                                </footer>
+                                            </div>
+                                        </article>
+                                    </div>
+                                {% endfor %}
+                                <div class="col-12 justify-content-center load-div mt-5">
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/activity">Ver mais</a>
+                                 </div>
+                            </div>
+                        </div>
+                        <div id="tab-banner" class="tab-pane fade">
+                                <div class="row align-items-center">
+                                    <div class="col-12 mb-3">
+                                        <h2 class="text-uppercase text-left text-white">#Banner</h2>
+                                    </div>
+                                    {% for post in banner %}
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                                            <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                                                <div class="post-card-image-link">
+                                                    <img src="{{ post.post_img }}" class="post-card-image">
+                                                </div>
+                                                <div class="post-card-content">
+                                                    <div class="post-card-content-link">
+                                                        <header class="post-card-header">
+                                                            <span class="post-card-tags">
+                                                                {% for category in post.post_category %}
+                                                                    {{category.name}}
+                                                                {% endfor %}
+                                                            </span>
+                                                            <h2 class="post-card-title">{{ post.post_title }}</h2>
+                                                        </header>
+                                                        <section class="post-card-excerpt">
+                                                            <p>{{ post.post_desc }}</p>
+                                                        </section>
+                                                    </div>
+                                                    <footer class="post-card-meta">
+                                                        <ul class="author-list">
+                                                            <li class="author-list-item">
+                                                                <a href="#" class="static-avatar">
+                                                                    <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    <span class="reading-time">{{ post.post_date }}</span>
+                                                    </footer>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="col-12 justify-content-center load-div mt-5">
+                                        <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/banner">Ver mais</a>
+                                     </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mini divider">
+    <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+    </div>
+</div>
+<section class="saints-section section">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="row w-100">
+                <div class="col-12 mb-5 text-center">
+                    <h2 class="text-uppercase text-white">Ultimos cavaleiros lançados</h2>
+                    <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero
+                        voluptatem.</p>
+                </div>
+            </div>
+            <div class="row w-100">
+                {% for post in character %}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 text-center mb-3 saint-block m-auto">
+                    <article class="saint-block m-auto d-flex">
+                        <a href="{{ post.character_link }}" class="text-decoration-none mx-auto">
+                            <img src="{{ post.character_thumb }}" alt="{{ post.character_name }}" class="img-fluid"><br>
+                            <span>{{ post.character_name }}</span>
+                        </a>
+                    </article>
+                </div>
+                {% endfor %}
+                <div class="col-12 justify-content-center load-div mt-5">
+                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/characters/">Ver mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-12">
+        <div class="mini divider">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="guides-section section">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="row">
+                <div class="col-12 mb-5 text-center">
+                    <h2 class="text-uppercase text-white">Guias</h2>
+                    <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero
+                        voluptatem.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center mb-3 guide-block d-flex">
+                    <article class="guide-block m-auto d-flex">
+                        <a href="#" class="text-decoration-none">
+                            <img src="{{ site.theme.link }}/assets/images/guide.png" alt="" width="150"
+                                class="img-fluid mb-3 shadow-sm"><br>
+                            <span>GUIDE</span>
+                            <p class="lead">
+                                Vivamus sagittis lacus vel augue laoreet.
+                            </p>
+                        </a>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center mb-3 guide-block d-flex">
+                    <article class="guide-block m-auto d-flex">
+                        <a href="#" class="text-decoration-none">
+                            <img src="{{ site.theme.link }}/assets/images/guide.png" alt="" width="150"
+                                class="img-fluid mb-3 shadow-sm"><br>
+                            <span>GUIDE</span>
+                            <p class="lead">
+                                Vivamus sagittis lacus vel augue laoreet.
+                            </p>
+                        </a>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center mb-3 guide-block d-flex">
+                    <article class="guide-block m-auto d-flex">
+                        <a href="#" class="text-decoration-none">
+                            <img src="{{ site.theme.link }}/assets/images/guide.png" alt="" width="150"
+                                class="img-fluid mb-3 shadow-sm"><br>
+                            <span>GUIDE</span>
+                            <p class="lead">
+                                Vivamus sagittis lacus vel augue laoreet.
+                            </p>
+                        </a>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center mb-3 guide-block d-flex">
+                    <article class="guide-block m-auto d-flex">
+                        <a href="#" class="text-decoration-none">
+                            <img src="{{ site.theme.link }}/assets/images/guide.png" alt="" width="150"
+                                class="img-fluid mb-3 shadow-sm"><br>
+                            <span>GUIDE</span>
+                            <p class="lead">
+                                Vivamus sagittis lacus vel augue laoreet.
+                            </p>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-12">
+        <div class="mini divider">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="team-guide section">
+    <div class="container">
+        <div class="row text-center text-white">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="text-uppercase text-white">Nossa equipe</h2>
+                <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero voluptatem.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            {% for member in team %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-5 mx-auto">
+                    <div class="rounded"><img src="{{member.photo}}" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail" style="width:150px;height:150px">
+                        <h5 class="mb-0 text-white">{{member.name}}</h5><span class="small text-uppercase text-muted">{{member.type}}</span>
+                        <ul class="social mb-0 list-inline mt-3">
+                            {% if member.discord != "" %}
+                                <li class="list-inline-item"><a href="{{member.discord}}" target="_blank" class="social-link"><i class="fab fa-discord"></i></a></li>
+                            {% endif %}
+                            {% if member.twitter != "" %}
+                            <li class="list-inline-item"><a href="{{member.twitter}}" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            {% endif %}
+                            {% if member.live is not null %}
+                            <li class="list-inline-item"><a href="{{member.live}}" target="_blank" class="social-link"><i class="fab
+                                {% if member.plataform == 1 %} 
+                                    fa-twitch
+                                {% elseif member.plataform == 2 %}
+                                    fa-youtube
+                                {% elseif member.plataform == 3 %}
+                                    fa-facebook-f
+                                {% endif %}
+                                "></i></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

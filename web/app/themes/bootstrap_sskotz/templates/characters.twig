@@ -1,0 +1,170 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="saints section py-5">
+		<div class="container h-100">
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="row">
+					<div class="col-12 mb-5 text-center">
+						<h2 class="text-uppercase text-white">Tier List</h2>
+						<p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero																																																																																																																																										voluptatem.</p>
+					</div>
+				</div>
+				<!-- NOVOS CAVALEIROS  -->
+				<div class="row w-100">
+					<div class="col-12 py-3 text-center" id="new-saint">
+						<div class="col-12 text-center title-saint">
+							<h3 class="text-uppercase text-white text-left">Novos</h3>
+						</div>
+					</div>
+					{% for character in characters %}
+						{% if character.character_tier == "n" %}
+							<div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 text-center mb-3 saint-block d-inline-block">
+								<article class="saint-block">
+									<a href="{{ character.character_link }}" class="text-decoration-none">
+										<img src="{{ character.character_thumb }}" alt="" class="img-fluid"><br>
+										<span>{{ character.character_name }}</span>
+									</a>
+								</article>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="row w-100">
+					<div class="col-12">
+						<div class="mini divider">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- TIER S CAVALEIROS  -->
+				<div class="row w-100">
+					<div class="col-12 py-3 text-center" id="tiers-saint">
+						<div class="col-12 text-center title-saint">
+							<h3 class="text-uppercase text-white text-left">Muitas vezes</h3>
+						</div>
+					</div>
+					{% for character in characters %}
+						{% if character.character_tier == "s" %}
+							<div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2 text-center mb-3 saint-block d-inline-block">
+								<article class="saint-block">
+									<a href="{{ character.character_link }}" class="text-decoration-none">
+										<img src="{{ character.character_thumb }}" alt="" class="img-fluid"><br>
+										<span>{{ character.character_name }}</span>
+									</a>
+								</article>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div class="row w-100">
+					<div class="col-12">
+						<div class="mini divider">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- TIER A CAVALEIROS  -->
+				<div class="row w-100">
+					<div class="col-12 py-3 text-center" id="tiera-saint">
+						<div class="col-12 text-center title-saint">
+							<h3 class="text-uppercase text-white text-left">Frequentemente</h3>
+						</div>
+						{% for character in characters %}
+							{% if character.character_tier == "a" %}
+								<div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2 text-center mb-3 saint-block d-inline-block">
+									<article class="saint-block">
+										<a href="{{ character.character_link }}" class="text-decoration-none">
+											<img src="{{ character.character_thumb }}" alt="" class="img-fluid"><br>
+											<span>{{ character.character_name }}</span>
+										</a>
+									</article>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="row w-100">
+					<div class="col-12">
+						<div class="mini divider">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- TIER B CAVALEIROS  -->
+				<div class="row w-100">
+					<div class="col-12 py-3 text-center" id="tierb-saint">
+						<div class="col-12 text-center title-saint">
+							<h3 class="text-uppercase text-white text-left">As vezes</h3>
+						</div>
+						{% for character in characters %}
+							{% if character.character_tier == "b" %}
+								<div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2 text-center mb-3 saint-block d-inline-block">
+									<article class="saint-block">
+										<a href="{{ character.character_link }}" class="text-decoration-none">
+											<img src="{{ character.character_thumb }}" alt="" class="img-fluid"><br>
+											<span>{{ character.character_name }}</span>
+										</a>
+									</article>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="row w-100">
+					<div class="col-12">
+						<div class="mini divider">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- TIER C CAVALEIROS  -->
+				<div class="row w-100">
+					<div class="col-12 py-3 text-center" id="tierc-saint">
+						<div class="col-12 text-center title-saint">
+							<h3 class="text-uppercase text-white text-left">Nunca/Muito raro</h3>
+						</div>
+						{% for character in characters %}
+							{% if character.character_tier == "c" %}
+								<div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2 text-center mb-3 saint-block d-inline-block">
+									<article class="saint-block">
+										<a href="{{ character.character_link }}" class="text-decoration-none">
+											<img src="{{ character.character_thumb }}" alt="" class="img-fluid"><br>
+											<span>{{ character.character_name }}</span>
+										</a>
+									</article>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

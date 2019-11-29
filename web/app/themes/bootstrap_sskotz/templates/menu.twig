@@ -1,0 +1,27 @@
+{% if menu %}
+	<a class="navbar-toggler float-right menu-link border-0" id="toggle-sidenav" href="#menu">
+		<span class="text-white">
+			<i class="fas fa-bars icon-menu"></i>
+		</span>
+	</a>
+	<div class="navbar-collapse collapse" id="#navbarSupportedContent">
+		<ul class="navbar-nav mx-auto text-uppercase">
+			<li class="nav-item">
+				<a class="nav-link" href="{{site.url}}" target>Início</a>
+			</li>
+			{% for item in items %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ item.link }}" target="{{ item.target }}">{{ item.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="sidenav closed">
+		<div class="sidenav-body">
+			<a href="{{ site.url }}">Início</a>
+		</li>
+		{% for item in items %}
+			<a href="{{ item.link }}">{{ item.title }}</a>
+		</li>
+	{% endfor %}
+</div></div>{% endif %}

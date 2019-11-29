@@ -1,0 +1,292 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="section py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center py-3">
+					<h2 class="text-white text-uppercase">{{ post.character_name }}</h2>
+				</div>
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+					<div class="col-12 text-center pl-xl-0 mb-4 mb-xl-0">
+						<img src="{{ post.character_avatar.url }}" class="text-center img-fluid">
+					</div>
+					<div class="col-12 pl-xl-0 mb-4 mb-xl-0 py-2">
+						<h4 class="text-white mt-2">Cosmos sugeridos</h4>
+						<div class="col-12">
+							<h5 class="text-white-50 mt-2">Lendário</h5>
+							{% for cosmo in post.cosmos.legendary %}
+								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
+									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+								</div>
+							{% endfor %}
+						</div>
+						<div class="col-12">
+							<h5 class="text-white-50 mt-2">Solar</h5>
+							{% for cosmo in post.cosmos.solar %}
+								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
+									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+								</div>
+							{% endfor %}
+						</div>
+						<div class="col-12">
+							<h5 class="text-white-50 mt-2">Lunar</h5>
+							{% for cosmo in post.cosmos.lunar %}
+								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
+									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+								</div>
+							{% endfor %}
+						</div>
+						<div class="col-12">
+							<h5 class="text-white-50 mt-2">Estrela</h5>
+							{% for cosmo in post.cosmos.star %}
+								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
+									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 text-left rounded-lg" style="background-color: #222226">
+					<div class="py-5">
+						<div class="col-12 status-display mb-4 rounded-lg">
+							<div class="nivel-block py-3 m-auto">
+								<div class="col-12 d-inline-block text-center text-white">
+									<h1 class="d-inline-block mb-0 h-100 text-uppercase">Nível 80</h1>
+								</div>
+								<div class="col-12 d-inline-block text-center">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+									<img src="{{ site.theme.link }}/assets/images/star_icon.png" class="img-fluid">
+								</div>
+								<div class="col-12 mt-1 mb-2">
+									<div class="progress" style="height: 1.3rem;">
+										<div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="background-color: #ffd26d;color:white;font-size:16px;    text-shadow:-1px -1px 0 #000, 1px -1px 0 #000,-1px 1px 0 #000, 1px 1px 0 #000;">
+											960012/960012
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4 class="text-white mb-2 ml-3">Atributos básicos</h4>
+						<div class="col-12 d-block status-display rounded-lg">
+							<div class="py-4">
+								<div class="row status-block">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/pv_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_pv_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_pv_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_pv_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_pv_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Saúde
+										</div>
+										<div class="status d-inline-block">{{ post.character_pv }}</div>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/atqf_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_atq_f_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_atq_f_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_atq_f_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_atq_f_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Ataque físico
+										</div>
+										<div class="status d-inline-block">{{ post.character_atq_f }}</div>
+									</div>
+								</div>
+								<div class="row status-block">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/atqc_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_atq_c_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_atq_c_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_atq_c_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_atq_c_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Ataque cósmico
+										</div>
+										<div class="status d-inline-block">{{ post.character_atq_c }}</div>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/deff_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_def_f_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_def_f_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_def_f_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_def_f_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Defesa física
+										</div>
+										<div class="status d-inline-block">{{ post.character_def_c }}</div>
+									</div>
+								</div>
+								<div class="row status-block">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/defc_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_def_c_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_def_c_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_def_c_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_def_c_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Defesa cósmica
+										</div>
+										<div class="status d-inline-block">{{ post.character_speed }}</div>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
+										<div class="icon-status d-inline-block">
+											<img src="{{ site.theme.link }}/assets/images/speed_icon.png">
+										</div>
+										<div class="rank-status d-inline-block">
+											{% if post.character_speed_rank == 'S' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
+											{% elseif post.character_speed_rank == 'A' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_speed_rank == 'B' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_speed_rank == 'C' %}
+												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% endif %}
+										</div>
+										<div class="type-status d-inline-block">
+											Velocidade
+										</div>
+										<div class="status d-inline-block">{{ post.character_speed }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4 class="text-white mt-3 ml-3">Habilidades</h4>
+						<div class="col-12 d-block rounded-lg">
+							<div class="row">
+								{% for skill in post.skills %}
+									<div class="skills py-4 mb-3">
+										<div class="skill-up">
+											Recomendação de level:
+											{{ skill.skill_up }}
+										</div>
+										<div class="row">
+											<div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-inline-block">
+												<div class="skill-group text-center mx-auto" style="width:110px;position:relative">
+													<img src="{{ skill.img }}" class="img-fluid skill-img">
+													<div class="skill-cost">
+														{% set typePassive = "" %}
+														{% for type in skill.type %}
+															{% if type == 'Passiva' %}
+																{% set typePassive = 1 %}
+															{% endif %}
+														{% endfor %}
+														{% if typePassive == 1 %}
+															<span class="text-white font-stroke text-center"></span>
+														{% else %}
+															<span class="text-white font-stroke text-center">{{ skill.energy }}</span>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+											<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 d-inline-block py-3">
+												<div class="vertical-center">
+													<div class="col-12">
+														<h5 class="text-white text-md-left text-center">{{ skill.name }}</h5>
+													</div>
+													<div class="col-12 text-md-left text-center">
+														{% for type in skill.type %}
+															{% if type == 'Passiva' %}
+																<div class="type-passive w-auto px-2 d-inline-block mb-1">
+																	{{ type }}
+																</div>
+															{% elseif type == 'Ataque básico' %}
+																<div class="type-atqb w-auto px-2 d-inline-block mb-1">
+																	{{ type }}
+																</div>
+															{% else %}
+																<div class="type-skill w-auto px-2 d-inline-block mb-1">
+																	{{ type }}
+																</div>
+															{% endif %}
+														{% endfor %}
+													</div>
+												</div>
+											</div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-12">
+												<div class="container">
+													<p class="text-white-50">{{ skill.desc }}</p>
+													<ol class="text-white-50">
+														{% if not skill.lv1 is empty %}
+															<li>{{skill.lv1}}</li>
+														{% endif %}
+														{% if not skill.lv2 is empty %}
+															<li>{{skill.lv2}}</li>
+														{% endif %}
+														{% if not skill.lv3 is empty %}
+															<li>{{skill.lv3}}</li>
+														{% endif %}
+														{% if not skill.lv4 is empty %}
+															<li>{{skill.lv4}}</li>
+														{% endif %}
+														{% if not skill.lv5 is empty %}
+															<li>{{skill.lv5}}</li>
+														{% endif %}
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
