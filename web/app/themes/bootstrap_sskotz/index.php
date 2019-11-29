@@ -55,7 +55,7 @@ foreach ($context['public'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),
@@ -68,13 +68,7 @@ $context['event'] = Timber::get_posts([
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'category',
-			'field' => 'slug',
-			'terms' => 'event'
-		),
-	)
+	'tag' => 'event'
 ]);
 
 foreach ($context['event'] as $post) {
@@ -84,7 +78,7 @@ foreach ($context['event'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),
@@ -97,13 +91,7 @@ $context['activity'] = Timber::get_posts([
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'category',
-			'field' => 'slug',
-			'terms' => 'activity'
-		),
-	)
+	'tag' => 'activity'
 ]);
 
 foreach ($context['activity'] as $post) {
@@ -113,7 +101,7 @@ foreach ($context['activity'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),
@@ -126,13 +114,7 @@ $context['banner'] = Timber::get_posts([
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'category',
-			'field' => 'slug',
-			'terms' => 'banner'
-		),
-	)
+	'tag' => 'banner'
 ]);
 
 foreach ($context['banner'] as $post) {
@@ -142,7 +124,7 @@ foreach ($context['banner'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),
@@ -155,13 +137,7 @@ $context['atts'] = Timber::get_posts([
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'category',
-			'field' => 'slug',
-			'terms' => 'update'
-		),
-	)
+	'tag' => 'update'
 ]);
 
 foreach ($context['atts'] as $post) {
@@ -171,7 +147,7 @@ foreach ($context['atts'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),

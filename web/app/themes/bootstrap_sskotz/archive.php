@@ -18,30 +18,27 @@
 $templates = array('archive.twig', 'index.twig');
 $context = Timber::context();
 $posts = [];
-
-$category = str_replace("/", "", $_SERVER["REQUEST_URI"]);
-if ($category != "news") {
+global $paged;
+if (!isset($paged) || !$paged) {
+	$paged = 1;
+}
+$tag = str_replace("/", "", $_SERVER["REQUEST_URI"]);
+if ($tag != "news") {
 	$args = array(
 		'post_type' => 'post',
 		'post_satus' => 'publish',
-		'numberposts' => -1,
+		'posts_per_page' => 15,
 		'orderby' => 'publish_date',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'category',
-				'field' => 'slug',
-				'terms' => $category
-			),
-		),
-		'post_per_page' => 15,
+		'tag' => $tag,
+		'paged' => $paged
 	);
 } else {
 	$args = array(
 		'post_type' => 'post',
 		'post_satus' => 'publish',
-		'numberposts' => -1,
+		'posts_per_page' => 15,
 		'orderby' => 'publish_date',
-		'post_per_page' => 15,
+		'paged' => $paged
 	);
 }
 
@@ -54,7 +51,7 @@ foreach ($context['posts'] as $post) {
 		'post_img' => $data["post_thumb"]['url'],
 		'post_author_name' => get_the_author_meta($post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_category' => get_the_category($post->ID),
+		'post_tag' => get_the_tags($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
 		'post_link' => get_permalink($post->ID),
