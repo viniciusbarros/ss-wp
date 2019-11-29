@@ -1,0 +1,234 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="cosmos-section section py-5">
+		<div class="container h-100">
+			<div class="row">
+				<div class="col-12 mb-5 text-center">
+					<h2 class="text-uppercase text-white">Cosmos</h2>
+					<p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero voluptatem.</p>
+				</div>
+			</div>
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-12 mb-3">
+					<h4 class="text-uppercase" style="color: #a483ca;">Lendário</h4>
+				</div>
+				{% for cosmo in cosmos %}
+					{% if cosmo.cosmo_type == 'legendary' %}
+						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
+							<div class="cosmo-card d-flex cosmo-card-animation cosmo-legendary-animation" style="min-height: 270px;" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
+								<div class="container-fluid m-auto">
+									<div class="row">
+										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
+											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-legendary" alt="{{cosmo.cosmo_name}}">
+										</div>
+										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg">
+											<div class="py-2 m-auto">
+												<div class="col-12 p-0">
+													<h5 class="text-white">{{cosmo.cosmo_name}}</h5>
+												</div>
+												<div class="col-12 rounded-l mb-2 cosmo-status">
+													<div class="d-inline-block">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+													</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+												</div>
+												{% if cosmo.cosmo_status2_tipo != '' %}
+													<div class="col-12 rounded-l mb-2 cosmo-status">
+														<div class="d-inline-block">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+														</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+													</div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-3 text-left rounded-lg text-center">
+											<span class="text-white">{{cosmo.cosmo_bonus}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mini divider">
+						<div class="sk-folding-cube">
+							<div class="sk-cube1 sk-cube"></div>
+							<div class="sk-cube2 sk-cube"></div>
+							<div class="sk-cube4 sk-cube"></div>
+							<div class="sk-cube3 sk-cube"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-12 mb-3">
+					<h4 class="text-uppercase" style="color: #fbaf80;">Solar</h4>
+				</div>
+				{% for cosmo in cosmos %}
+					{% if cosmo.cosmo_type == 'solar' %}
+						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
+							<div class="cosmo-card d-flex cosmo-card-animation cosmo-solar-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
+								<div class="container-fluid m-auto">
+									<div class="row">
+										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
+											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-solar" alt="{{cosmo.cosmo_name}}">
+										</div>
+										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg">
+											<div class="py-2 m-auto">
+												<div class="col-12 p-0">
+													<h5 class="text-white">{{cosmo.cosmo_name}}</h5>
+												</div>
+												<div class="col-12 rounded-l mb-2 cosmo-status">
+													<div class="d-inline-block">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+													</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+												</div>
+												{% if cosmo.cosmo_status2_tipo != '' %}
+													<div class="col-12 rounded-l mb-2 cosmo-status">
+														<div class="d-inline-block">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+														</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+													</div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-3 text-left rounded-lg text-center">
+											<span class="text-white text-uppercase">{{cosmo.cosmo_bonus}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mini divider">
+						<div class="sk-folding-cube">
+							<div class="sk-cube1 sk-cube"></div>
+							<div class="sk-cube2 sk-cube"></div>
+							<div class="sk-cube4 sk-cube"></div>
+							<div class="sk-cube3 sk-cube"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-12 mb-3">
+					<h4 class="text-uppercase" style="color: #e9b13f;">Lunar</h4>
+				</div>
+				{% for cosmo in cosmos %}
+					{% if cosmo.cosmo_type == 'lunar' %}
+						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
+							<div class="cosmo-card d-flex cosmo-card-animation cosmo-lunar-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
+								<div class="container-fluid m-auto">
+									<div class="row">
+										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
+											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-lunar" alt="{{cosmo.cosmo_name}}">
+										</div>
+										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg">
+											<div class="py-2 m-auto">
+												<div class="col-12 p-0">
+													<h5 class="text-white">{{cosmo.cosmo_name}}</h5>
+												</div>
+												<div class="col-12 rounded-l mb-2 cosmo-status">
+													<div class="d-inline-block">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+													</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+												</div>
+												{% if cosmo.cosmo_status2_tipo != '' %}
+													<div class="col-12 rounded-l mb-2 cosmo-status">
+														<div class="d-inline-block">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+														</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+													</div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-3 text-left rounded-lg text-center">
+											<span class="text-white text-uppercase">{{cosmo.cosmo_bonus}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mini divider">
+						<div class="sk-folding-cube">
+							<div class="sk-cube1 sk-cube"></div>
+							<div class="sk-cube2 sk-cube"></div>
+							<div class="sk-cube4 sk-cube"></div>
+							<div class="sk-cube3 sk-cube"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-12 mb-3">
+					<h4 class="text-uppercase" style="color: #8287d4;">Estrela</h4>
+				</div>
+				{% for cosmo in cosmos %}
+					{% if cosmo.cosmo_type == 'star' %}
+						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
+							<div class="cosmo-card d-flex cosmo-card-animation cosmo-star-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
+								<div class="container-fluid m-auto">
+									<div class="row">
+										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
+											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-star" alt="{{cosmo.cosmo_name}}">
+										</div>
+										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg">
+											<div class="py-2 m-auto">
+												<div class="col-12 p-0">
+													<h5 class="text-white">{{cosmo.cosmo_name}}</h5>
+												</div>
+												<div class="col-12 rounded-l mb-2 cosmo-status">
+													<div class="d-inline-block">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+													</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+												</div>
+												{% if cosmo.cosmo_status2_tipo != '' %}
+													<div class="col-12 rounded-l mb-2 cosmo-status">
+														<div class="d-inline-block">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+														</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+													</div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-3 text-left rounded-lg text-center">
+											<span class="text-white text-uppercase">{{cosmo.cosmo_bonus}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

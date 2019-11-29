@@ -1,0 +1,67 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+<section class="news-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3 text-center">
+                <h2 class="text-uppercase text-white">Novidades</h2>
+                <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero
+                    voluptatem.</p>
+            </div>
+          </div>
+          <div class="row align-items-center">
+              <div class="col-12 mb-3">
+                  <nav class="pd-navigation tabs-index">
+                      <ul class="nav">
+                          <li><a href="{{site.url}}/news">Todas
+                                  publicações</a></li>
+                          <li><a href="{{site.url}}/update">Atualizações</a>
+                          </li>
+                          <li><a href="{{site.url}}/event">Eventos</a></li>
+                          <li><a href="{{site.url}}/activity">Atividades</a>
+                          </li>
+                          <li><a href="{{site.url}}/banner">Banners</a></li>
+                      </ul>
+                  </nav>
+              </div>
+              {% for post in posts %}
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+                  <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
+                      <div class="post-card-image-link">
+                          <img src="{{ post.post_img }}" class="post-card-image">
+                      </div>
+                      <div class="post-card-content">
+                          <div class="post-card-content-link">
+                              <header class="post-card-header">
+                                  <span class="post-card-tags">
+                                      {% for category in post.post_category %}
+                                          {{category.name}}
+                                      {% endfor %}
+                                  </span>
+                                  <h2 class="post-card-title">{{ post.post_title }}</h2>
+                              </header>
+                              <section class="post-card-excerpt">
+                                  <p>{{ post.post_desc }}</p>
+                              </section>
+                          </div>
+                          <footer class="post-card-meta">
+                              <ul class="author-list">
+                                  <li class="author-list-item">
+                                      <a href="#" class="static-avatar">
+                                          <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+                                      </a>
+                                  </li>
+                              </ul>
+                          <span class="reading-time">{{ post.post_date }}</span>
+                          </footer>
+                      </div>
+                  </article>
+              </div>
+              {% endfor %}
+          </div>
+        </div>
+</section>
+
+{% endblock %}
