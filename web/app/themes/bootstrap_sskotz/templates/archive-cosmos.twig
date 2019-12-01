@@ -13,7 +13,7 @@
 				<div class="col-12 mb-3">
 					<h4 class="text-uppercase" style="color: #a483ca;">Lendário</h4>
 				</div>
-				{% for cosmo in cosmos %}
+				{% for cosmo in posts %}
 					{% if cosmo.cosmo_type == 'legendary' %}
 						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
 							<div class="cosmo-card d-flex cosmo-card-animation cosmo-legendary-animation" style="min-height: 270px;" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
@@ -71,7 +71,7 @@
 				<div class="col-12 mb-3">
 					<h4 class="text-uppercase" style="color: #fbaf80;">Solar</h4>
 				</div>
-				{% for cosmo in cosmos %}
+				{% for cosmo in posts %}
 					{% if cosmo.cosmo_type == 'solar' %}
 						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
 							<div class="cosmo-card d-flex cosmo-card-animation cosmo-solar-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
@@ -129,7 +129,7 @@
 				<div class="col-12 mb-3">
 					<h4 class="text-uppercase" style="color: #e9b13f;">Lunar</h4>
 				</div>
-				{% for cosmo in cosmos %}
+				{% for cosmo in posts %}
 					{% if cosmo.cosmo_type == 'lunar' %}
 						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
 							<div class="cosmo-card d-flex cosmo-card-animation cosmo-lunar-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
@@ -187,7 +187,7 @@
 				<div class="col-12 mb-3">
 					<h4 class="text-uppercase" style="color: #8287d4;">Estrela</h4>
 				</div>
-				{% for cosmo in cosmos %}
+				{% for cosmo in posts %}
 					{% if cosmo.cosmo_type == 'star' %}
 						<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
 							<div class="cosmo-card d-flex cosmo-card-animation cosmo-star-animation" onclick="window.location.href = '{{ cosmo.cosmo_link }}'">
