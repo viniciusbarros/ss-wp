@@ -62,6 +62,8 @@ if ($context['post']->post_type == 'characters') {
 	$character['cosmos'] = array_merge($cosmos);
 	$character['skills'] = array_merge($skills);
 	$context['post'] = $character;
+} else if ($context['post']->post_type == 'post') {
+	$context['cats'] = get_the_category($context['post']->ID);
 }
 
 if (post_password_required($timber_post->ID)) {
