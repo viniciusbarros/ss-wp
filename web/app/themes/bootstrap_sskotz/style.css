@@ -634,6 +634,7 @@ main section:last-child{
     box-sizing: border-box;
     position: relative;
     vertical-align: middle;
+    min-height: 270px;
     
 }
 .cosmo-card::before,
@@ -888,6 +889,52 @@ main section:last-child{
 
 .post-page-full .author-card-name span {
     color: #999;
+}
+
+.cosmo-info{
+    min-height: 270px;
+}
+
+.cosmo-info .cosmo-title-legendary{
+    background: linear-gradient(to right, #a483ca , transparent);  
+}
+.cosmo-info .cosmo-title-legendary span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-solar{
+    background: linear-gradient(to right, #fbaf80 , transparent);  
+}
+.cosmo-info .cosmo-title-solar span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-lunar{
+    background: linear-gradient(to right, #e9b13f , transparent);  
+}
+.cosmo-info .cosmo-title-lunar span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-star{
+    background: linear-gradient(to right, #8287d4 , transparent);  
+}
+.cosmo-info .cosmo-title-star span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-xpinfo .cosmo-header span:first-child{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.cosmo-xpinfo .cosmo-header span:last-child{
+    font-size: 1.2em;
+    font-weight: bolder;
 }
 
 @media (max-width: 575px) {

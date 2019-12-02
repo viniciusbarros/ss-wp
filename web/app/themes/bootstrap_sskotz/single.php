@@ -65,6 +65,33 @@ if ($context['post']->post_type == 'characters') {
 } else if ($context['post']->post_type == 'post') {
 	// Caso seja 'post', buscar a categoria
 	$context['cats'] = get_the_category($context['post']->ID);
+} else if ($context['post']->post_type == 'cosmos') {
+	$data = get_fields($context['post']->ID);
+	$cosmo = [
+		'cosmo_name' => $data["cosmo_name"],
+		'cosmo_bonus' => $data["cosmo_bonus"],
+		'cosmo_qntstatus' => $data["cosmo_qntstatus"],
+		'cosmo_img' => $data["cosmo_img"]['url'],
+		'cosmo_type' => get_the_terms($context['post']->ID, 'cosmo_type')[0]->slug,
+		'cosmo_link' => get_permalink($context['post']->ID),
+		'cosmo_drop_location' => $data['cosmo_drop_location'],
+	];
+	$drop_days = $data['cosmo_drop_days'];
+	$days = "( ";
+	foreach ($drop_days as $day) {
+		$days = $days . $day . ', ';
+	}
+	$days = rtrim($days, ', ');
+	$days .= " )";
+	$days;
+	$cosmo['cosmo_drop_days'] = $days;
+	$cosmo['cosmo_status1_tipo'] = $data['cosmo_status1']['tipo'];
+	$cosmo['cosmo_status1_max'] = $data['cosmo_status1']['max'];
+	if ($data['cosmo_qntstatus'] > 1) {
+		$cosmo['cosmo_status2_tipo'] = $data['cosmo_status2']['tipo'];
+		$cosmo['cosmo_status2_max'] = $data['cosmo_status2']['max'];
+	}
+	$context['post'] = $cosmo;
 }
 
 if (post_password_required($timber_post->ID)) {
