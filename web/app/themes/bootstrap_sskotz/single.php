@@ -14,7 +14,9 @@ $context         = Timber::context();
 $timber_post     = Timber::query_post();
 $context['post'] = $timber_post;
 
+// Verifcar qual é o post type da publicação
 if ($context['post']->post_type == 'characters') {
+	// Caso seja 'characters', filtrar esses campos
 	$context['post'] = get_fields($context['post']);
 	$legendary = [];
 	$solar = [];
@@ -50,8 +52,6 @@ if ($context['post']->post_type == 'characters') {
 	foreach ($context['post']['character_cosmo_star'] as $cosmo) {
 		$star[] = get_fields($cosmo->ID);
 	}
-
-
 	$skills = get_fields($context['post']['character_skills']->ID);
 	unset($skills['skill_qnt']);
 	$cosmos['legendary'] = array_merge($legendary);
@@ -63,6 +63,7 @@ if ($context['post']->post_type == 'characters') {
 	$character['skills'] = array_merge($skills);
 	$context['post'] = $character;
 } else if ($context['post']->post_type == 'post') {
+	// Caso seja 'post', buscar a categoria
 	$context['cats'] = get_the_category($context['post']->ID);
 }
 

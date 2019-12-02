@@ -16,6 +16,8 @@
 
 $context          = Timber::context();
 $context['posts'] = new Timber\PostQuery();
+
+// Arrays para cada postagem
 $publics = [];
 $events = [];
 $activitys = [];
@@ -24,6 +26,7 @@ $atts = [];
 $characters = [];
 $team = [];
 
+// Buscar postagens para aba de ultimos personagens lançados
 $context['character'] = Timber::get_posts([
 	'post_type' => 'characters',
 	'post_satus' => 'publish',
@@ -31,6 +34,7 @@ $context['character'] = Timber::get_posts([
 	'orderby' => 'publish_date',
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['character'] as $post) {
 	$data = get_fields($post->ID);
 	$saint = [
@@ -41,6 +45,7 @@ foreach ($context['character'] as $post) {
 	$characters[] = array_merge($saint);
 }
 
+// Buscar todas as novidades recentes
 $context['public'] = Timber::get_posts([
 	'post_type' => 'post',
 	'post_satus' => 'publish',
@@ -48,6 +53,7 @@ $context['public'] = Timber::get_posts([
 	'orderby' => 'publish_date',
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['public'] as $post) {
 	$data = get_fields($post->ID);
 	$public = [
@@ -63,14 +69,16 @@ foreach ($context['public'] as $post) {
 	$publics[] = array_merge($public);
 }
 
+// Buscar todas os eventos recentes
 $context['event'] = Timber::get_posts([
 	'post_type' => 'post',
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tag' => 'event'
+	'category_name' => 'event'
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['event'] as $post) {
 	$data = get_fields($post->ID);
 	$event = [
@@ -86,14 +94,16 @@ foreach ($context['event'] as $post) {
 	$events[] = array_merge($event);
 }
 
+// Buscar todas as atividades recentes
 $context['activity'] = Timber::get_posts([
 	'post_type' => 'post',
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tag' => 'activity'
+	'category_name' => 'activity'
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['activity'] as $post) {
 	$data = get_fields($post->ID);
 	$activity = [
@@ -109,14 +119,16 @@ foreach ($context['activity'] as $post) {
 	$activitys[] = array_merge($activity);
 }
 
+// Buscar todos os banners recentes
 $context['banner'] = Timber::get_posts([
 	'post_type' => 'post',
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tag' => 'banner'
+	'category_name' => 'banner'
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['banner'] as $post) {
 	$data = get_fields($post->ID);
 	$banner = [
@@ -132,14 +144,16 @@ foreach ($context['banner'] as $post) {
 	$banners[] = array_merge($banner);
 }
 
+// Buscar todos as atualizações recentes
 $context['atts'] = Timber::get_posts([
 	'post_type' => 'post',
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
-	'tag' => 'update'
+	'category_name' => 'update'
 ]);
 
+// Filtrar os campos dos posts buscados
 foreach ($context['atts'] as $post) {
 	$data = get_fields($post->ID);
 	$att = [
@@ -155,6 +169,7 @@ foreach ($context['atts'] as $post) {
 	$atts[] = array_merge($att);
 }
 
+// Buscar os membros da equipe
 $context['team'] = Timber::get_posts([
 	'post_type' => 'members',
 	'post_satus' => 'publish',
@@ -162,7 +177,7 @@ $context['team'] = Timber::get_posts([
 	'numberposts' => -1,
 ]);
 
-
+// Filtrar os campos dos posts buscados
 $cont = 1;
 foreach ($context['team'] as $person) {
 	$data = get_fields($person->ID);
@@ -181,6 +196,7 @@ foreach ($context['team'] as $person) {
 	}
 }
 
+// Passando os arrays para dentro do context
 $context['public'] = $publics;
 $context['event'] = $events;
 $context['activity'] = $activitys;
