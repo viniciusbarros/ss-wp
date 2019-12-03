@@ -166,4 +166,58 @@ class StarterSite extends Timber\Site
 		return $twig;
 	}
 }
+add_action('show_user_profile', 'extra_user_profile_fields');
+add_action('edit_user_profile', 'extra_user_profile_fields');
+
+function extra_user_profile_fields($user)
+{ ?>
+	<h3><?php _e("Redes sociais", "blank"); ?></h3>
+
+	<table class="form-table">
+		<tr>
+			<th><label for="address"><?php _e("Discord"); ?></label></th>
+			<td>
+				<input type="text" name="discord" id="discord" value="<?php echo esc_attr(get_the_author_meta('discord', $user->ID)); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e("Por favor, digite o link do seu Discord."); ?></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="city"><?php _e("Facebook"); ?></label></th>
+			<td>
+				<input type="text" name="facebook" id="facebook" value="<?php echo esc_attr(get_the_author_meta('facebook', $user->ID)); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e("Por favor, digite o link do seu perfil ou pagina do Facebook."); ?></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="province"><?php _e("Twitter"); ?></label></th>
+			<td>
+				<input type="text" name="twitter" id="twitter" value="<?php echo esc_attr(get_the_author_meta('province', $user->ID)); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e("Por favor, digite o link do seu Twitter."); ?></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="postalcode"><?php _e("Live"); ?></label></th>
+			<td>
+				<input type="text" name="live" id="live" value="<?php echo esc_attr(get_the_author_meta('live', $user->ID)); ?>" class="regular-text" /><br />
+				<span class="description"><?php _e("Por favor, digite o link da sua live."); ?></span>
+			</td>
+		</tr>
+	</table>
+<?php }
+
+add_action('personal_options_update', 'save_extra_user_profile_fields');
+add_action('edit_user_profile_update', 'save_extra_user_profile_fields');
+
+function save_extra_user_profile_fields($user_id)
+{
+
+	if (!current_user_can('edit_user', $user_id)) {
+		return false;
+	}
+
+	update_user_meta($user_id, 'discord', $_POST['discord']);
+	update_user_meta($user_id, 'facebook', $_POST['facebook']);
+	update_user_meta($user_id, 'twitter', $_POST['twitter']);
+	update_user_meta($user_id, 'live', $_POST['live']);
+}
 new StarterSite();

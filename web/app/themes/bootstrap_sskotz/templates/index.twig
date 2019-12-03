@@ -31,17 +31,17 @@
                                     <h2 class="text-uppercase text-left text-white">#Publicações</h2>
                                 </div>
                                 {% for post in public %}
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-                                    <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-                                        <div class="post-card-image-link">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+                                    <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+                                        <a class="post-card-image-link" href="{{ post.post_link }}">
                                             <img src="{{ post.post_img }}" class="post-card-image">
-                                        </div>
+                                        </a>
                                         <div class="post-card-content">
-                                            <div class="post-card-content-link">
+                                            <a class="post-card-content-link" href="{{ post.post_link }}">
                                                 <header class="post-card-header">
                                                     <span class="post-card-tags">
-                                                        {% for category in post.post_category %}
-                                                            {{category.name}}
+                                                        {% for tag in post.post_tag %}
+                                                            {{tag.name}}
                                                         {% endfor %}
                                                     </span>
                                                     <h2 class="post-card-title">{{ post.post_title }}</h2>
@@ -49,11 +49,11 @@
                                                 <section class="post-card-excerpt">
                                                     <p>{{ post.post_desc }}</p>
                                                 </section>
-                                            </div>
+                                            </a>
                                             <footer class="post-card-meta">
                                                 <ul class="author-list">
                                                     <li class="author-list-item">
-                                                        <a href="#" class="static-avatar">
+                                                        <a href="{{ post.post_author_link }}" class="static-avatar">
                                                             <img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
                                                         </a>
                                                     </li>
@@ -75,17 +75,17 @@
                                     <h2 class="text-uppercase text-left text-white">#Atualizações</h2>
                                 </div>
                                 {% for post in att %}
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-                                            <div class="post-card-image-link">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+                                            <a class="post-card-image-link" href="{{ post.post_link }}">
                                                 <img src="{{ post.post_img }}" class="post-card-image">
-                                            </div>
+                                            </a>
                                             <div class="post-card-content">
-                                                <div class="post-card-content-link">
+                                                <a class="post-card-content-link" href="{{ post.post_link }}">
                                                     <header class="post-card-header">
                                                         <span class="post-card-tags">
-                                                            {% for category in post.post_category %}
-                                                                {{category.name}}
+                                                            {% for tag in post.post_tag %}
+                                                                {{tag.name}}
                                                             {% endfor %}
                                                         </span>
                                                         <h2 class="post-card-title">{{ post.post_title }}</h2>
@@ -93,7 +93,7 @@
                                                     <section class="post-card-excerpt">
                                                         <p>{{ post.post_desc }}</p>
                                                     </section>
-                                                </div>
+                                                </a>
                                                 <footer class="post-card-meta">
                                                     <ul class="author-list">
                                                         <li class="author-list-item">
@@ -109,7 +109,7 @@
                                     </div>
                                 {% endfor %}
                                 <div class="col-12 justify-content-center load-div mt-5">
-                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/update">Ver mais</a>
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/news/update">Ver mais</a>
                                 </div>
                             </div>
                         </div>
@@ -119,17 +119,17 @@
                                     <h2 class="text-uppercase text-left text-white">#Eventos</h2>
                                 </div>
                                 {% for post in event %}
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-                                            <div class="post-card-image-link">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+                                            <a class="post-card-image-link" href="{{ post.post_link }}">
                                                 <img src="{{ post.post_img }}" class="post-card-image">
-                                            </div>
+                                            </a>
                                             <div class="post-card-content">
-                                                <div class="post-card-content-link">
+                                                <a class="post-card-content-link" href="{{ post.post_link }}">
                                                     <header class="post-card-header">
                                                         <span class="post-card-tags">
-                                                            {% for category in post.post_category %}
-                                                                {{category.name}}
+                                                            {% for tag in post.post_tag %}
+                                                                {{tag.name}}
                                                             {% endfor %}
                                                         </span>
                                                         <h2 class="post-card-title">{{ post.post_title }}</h2>
@@ -137,7 +137,7 @@
                                                     <section class="post-card-excerpt">
                                                         <p>{{ post.post_desc }}</p>
                                                     </section>
-                                                </div>
+                                                </a>
                                                 <footer class="post-card-meta">
                                                     <ul class="author-list">
                                                         <li class="author-list-item">
@@ -153,7 +153,7 @@
                                     </div>
                                 {% endfor %}
                                 <div class="col-12 justify-content-center load-div mt-5">
-                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/event">Ver mais</a>
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/news/event">Ver mais</a>
                                 </div>
                             </div>
                         </div>
@@ -163,17 +163,17 @@
                                     <h2 class="text-uppercase text-left text-white">#Atividades</h2>
                                 </div>
                                 {% for post in activity %}
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-                                            <div class="post-card-image-link">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+                                        <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+                                            <a class="post-card-image-link" href="{{ post.post_link }}">
                                                 <img src="{{ post.post_img }}" class="post-card-image">
-                                            </div>
+                                            </a>
                                             <div class="post-card-content">
-                                                <div class="post-card-content-link">
+                                                <a class="post-card-content-link" href="{{ post.post_link }}">
                                                     <header class="post-card-header">
                                                         <span class="post-card-tags">
-                                                            {% for category in post.post_category %}
-                                                                {{category.name}}
+                                                            {% for tag in post.post_tag %}
+                                                                {{tag.name}}
                                                             {% endfor %}
                                                         </span>
                                                         <h2 class="post-card-title">{{ post.post_title }}</h2>
@@ -181,7 +181,7 @@
                                                     <section class="post-card-excerpt">
                                                         <p>{{ post.post_desc }}</p>
                                                     </section>
-                                                </div>
+                                                </a>
                                                 <footer class="post-card-meta">
                                                     <ul class="author-list">
                                                         <li class="author-list-item">
@@ -197,7 +197,7 @@
                                     </div>
                                 {% endfor %}
                                 <div class="col-12 justify-content-center load-div mt-5">
-                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/activity">Ver mais</a>
+                                    <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/news/activity">Ver mais</a>
                                  </div>
                             </div>
                         </div>
@@ -207,17 +207,17 @@
                                         <h2 class="text-uppercase text-left text-white">#Banner</h2>
                                     </div>
                                     {% for post in banner %}
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-                                            <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-                                                <div class="post-card-image-link">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+                                            <article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+                                                <a class="post-card-image-link" href="{{ post.post_link }}">
                                                     <img src="{{ post.post_img }}" class="post-card-image">
-                                                </div>
+                                                </a>
                                                 <div class="post-card-content">
-                                                    <div class="post-card-content-link">
+                                                    <a class="post-card-content-link" href="{{ post.post_link }}">
                                                         <header class="post-card-header">
                                                             <span class="post-card-tags">
-                                                                {% for category in post.post_category %}
-                                                                    {{category.name}}
+                                                                {% for tag in post.post_tag %}
+                                                                    {{tag.name}}
                                                                 {% endfor %}
                                                             </span>
                                                             <h2 class="post-card-title">{{ post.post_title }}</h2>
@@ -225,7 +225,7 @@
                                                         <section class="post-card-excerpt">
                                                             <p>{{ post.post_desc }}</p>
                                                         </section>
-                                                    </div>
+                                                    </a>
                                                     <footer class="post-card-meta">
                                                         <ul class="author-list">
                                                             <li class="author-list-item">
@@ -241,7 +241,7 @@
                                         </div>
                                     {% endfor %}
                                     <div class="col-12 justify-content-center load-div mt-5">
-                                        <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/banner">Ver mais</a>
+                                        <a class="btn-load text-center" style="max-width: 200px;" href="{{site.url}}/news/banner">Ver mais</a>
                                      </div>
                                 </div>
                             </div>
@@ -387,8 +387,8 @@
         <div class="row text-center">
             {% for member in team %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-5 mx-auto">
-                    <div class="rounded"><img src="{{member.photo}}" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail" style="width:150px;height:150px">
-                        <h5 class="mb-0 text-white">{{member.name}}</h5><span class="small text-uppercase text-muted">{{member.type}}</span>
+                    <div class="rounded"><img src="{{member.avatar}}" alt="" class="img-fluid rounded-circle mb-3 img-thumbnail" style="width:150px;height:150px">
+                        <h5 class="mb-0 text-white">{{member.name}}</h5><span class="small text-uppercase text-muted">{{member.role}}</span>
                         <ul class="social mb-0 list-inline mt-3">
                             {% if member.discord != "" %}
                                 <li class="list-inline-item"><a href="{{member.discord}}" target="_blank" class="social-link"><i class="fab fa-discord"></i></a></li>
@@ -398,14 +398,8 @@
                             </li>
                             {% endif %}
                             {% if member.live is not null %}
-                            <li class="list-inline-item"><a href="{{member.live}}" target="_blank" class="social-link"><i class="fab
-                                {% if member.plataform == 1 %} 
-                                    fa-twitch
-                                {% elseif member.plataform == 2 %}
-                                    fa-youtube
-                                {% elseif member.plataform == 3 %}
-                                    fa-facebook-f
-                                {% endif %}
+                            <li class="list-inline-item"><a href="{{member.live}}" target="_blank" class="social-link"><i class="
+                                {% if member.plataform_live == 'twitch' %}fab fa-twitch{% elseif member.plataform_live == 'youtube' %}fab fa-youtube{% elseif member.plataform_live == 'facebook' %}fa-facebook-f{% else %}fa fa-headset {% endif %}
                                 "></i></a>
                             </li>
                             {% endif %}

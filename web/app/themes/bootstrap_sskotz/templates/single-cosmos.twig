@@ -1,0 +1,382 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="section py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center py-3">
+					<h2 class="text-white text-uppercase">{{ post.cosmo_name }}</h2>
+				</div>
+				<div class="row h-100 w-100 justify-content-center">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 pr-0">
+						<div class="cosmo-card d-flex col-12 px-0" style="background: transparent;cursor: auto;">
+							<div class="container-fluid m-auto">
+								<div class="row">
+									<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto text-center">
+										<img src="{{post.cosmo_img}}" class="img-fluid cosmo-img cosmo-{{post.cosmo_type}}" alt="{{post.cosmo_name}}">
+									</div>
+									<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg  m-auto">
+										<div class="py-2">
+											<div class="col-12 rounded-l mb-2 cosmo-status">
+												<div class="d-inline-block">
+													<img src="{{ site.theme.link }}/assets/images/{{ post.cosmo_status1_tipo }}_icon" alt="{{ post.cosmo_status1_tipo }}">
+												</div>
+												<div class="text-white d-inline-block">{{ post.cosmo_status1_max }}</div>
+											</div>
+											{% if post.cosmo_status2_tipo != '' %}
+												<div class="col-12 rounded-l mb-2 cosmo-status">
+													<div class="d-inline-block">
+														<img src="{{ site.theme.link }}/assets/images/{{ post.cosmo_status2_tipo }}_icon" alt="{{ post.cosmo_status1_tipo2 }}">
+													</div>
+													<div class="text-white d-inline-block">{{ post.cosmo_status2_max }}</div>
+												</div>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-3 text-left rounded-lg text-center">
+										<span class="text-white {% if post.cosmo_type != 'legendary' %}text-uppercase{% endif %}">
+											{{post.cosmo_bonus}}
+										</span><br>
+										{% if post.cosmo_type != 'legendary' %}
+											<span class="text-white-50">
+												Atributos do conjunto: Conecte 3 cosmos do mesmo tipo para ativar.
+											</span>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 cosmo-xpinfo px-0 d-flex">
+							<div class="col-4 px-0 text-center cosmo-header">
+								<span class="text-white">Level</span>
+								<br>
+								<span class="text-white">1 > 2</span>
+								<br>
+								<span class="text-white">2 > 3</span>
+								<br>
+								<span class="text-white">3 > 4</span>
+								<br>
+								<span class="text-white">4 > 5</span>
+								<br>
+								<span class="text-white">5 > 6</span>
+								<br>
+								<span class="text-white">6 > 7</span>
+								<br>
+								<span class="text-white">7 > 8</span>
+								<br>
+								<span class="text-white">8 > 9</span>
+								<br>
+								<span class="text-white">9 > 10</span>
+								<br>
+								<span class="text-white">Total</span>
+							</div>
+							<div class="col-4 px-0 text-center cosmo-header">
+								<span class="text-white">Cosmo XP</span>
+								<br>
+								<span class="text-white">1680</span>
+								<br>
+								<span class="text-white">2550</span>
+								<br>
+								<span class="text-white">5050</span>
+								<br>
+								<span class="text-white">7600</span>
+								<br>
+								<span class="text-white">15000</span>
+								<br>
+								<span class="text-white">24500</span>
+								<br>
+								<span class="text-white">32000</span>
+								<br>
+								<span class="text-white">39500</span>
+								<br>
+								<span class="text-white">77120</span>
+								<br>
+								<span class="text-white">205.000</span>
+							</div>
+							<div class="col-4 px-0 text-center cosmo-header">
+								<span class="text-white">Gold</span>
+								<br>
+								<span class="text-white">10000</span>
+								<br>
+								<span class="text-white">15000</span>
+								<br>
+								<span class="text-white">30000</span>
+								<br>
+								<span class="text-white">45000</span>
+								<br>
+								<span class="text-white">60000</span>
+								<br>
+								<span class="text-white">135000</span>
+								<br>
+								<span class="text-white">180000</span>
+								<br>
+								<span class="text-white">225000</span>
+								<br>
+								<span class="text-white">450000</span>
+								<br>
+								<span class="text-white">1,150.000</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 px-0">
+						<div class="cosmo-info d-flex">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-12 px-lg-0 mb-4">
+										<div class="col-12 px-1 cosmo-title-{{post.cosmo_type}} mb-2">
+											<span class="text-black text-uppercase">COMO OBTER:</span>
+										</div>
+										<div class="col-12 px-lg-0">
+											<span class="text-white">
+												Pode ser obtido através de:
+												{{ post.cosmo_drop_location }}
+												{{ post.cosmo_drop_days }}</span>
+										</div>
+									</div>
+									<div class="col-12 px-lg-0">
+										<div class="col-12 px-1 cosmo-title-{{post.cosmo_type}} mb-1">
+											<span class="text-black text-uppercase">Subatributos possíveis:</span>
+										</div>
+										<div class="col-12 px-lg-0">
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/atqf_icon.png" width="40">Ataque Físico
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">55</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">50</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/atqf_icon.png" width="40">Ataque Físico %
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3,04%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">2,73%</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/atqc_icon.png" width="40">Ataque Cósmico
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">55</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">50</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/atqc_icon.png" width="40">Ataque Cósmico %
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3,04%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">2,73%</span>
+												</div>
+											</div>
+											{% if post.cosmo_type != 'lunar' %}
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/dmgc_icon.png" width="40">Dano Cósmico %
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">1,20%</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">1,08%</span>
+													</div>
+												</div>
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/nfc_icon.png" width="40">Nível Crit. F
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">57</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">51</span>
+													</div>
+												</div>
+											{% endif %}
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/pv_icon.png" width="40">PV
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">340</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">306</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/pv_icon.png" width="40">PV %
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3,04%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">2,73%</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/deff_icon.png" width="40">Defesa Física
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">20</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">18</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/deff_icon.png" width="40">Defesa Física %
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">2,73%</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/defc_icon.png" width="40">Defesa Cósmica
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">20</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">18</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/defc_icon.png" width="40">Defesa Cósmica %
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">??</span>
+												</div>
+											</div>
+											<div class="col-12 p-0 d-flex">
+												<div class="col-7 px-0">
+													<span class="text-white">
+														<img src="{{ site.theme.link }}/assets/images/rs_icon.png" width="40">Resistência á status
+													</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">4,40%</span>
+												</div>
+												<div class="col-2 my-auto">
+													<span class="text-white">3,96%</span>
+												</div>
+											</div>
+											{% if post.cosmo_type != 'star' %}
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/as_icon.png" width="40">Acerto de status
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">4,40%</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">3,96%</span>
+													</div>
+												</div>
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/speed_icon.png" width="40">Velocidade
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">16</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">13</span>
+													</div>
+												</div>
+											{% endif %}
+											{% if post.cosmo_type == 'star' or post.cosmo_type == 'legendary' %}
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/ls_icon.png" width="40">Roubo de vida
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">3,75%</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">3,45%</span>
+													</div>
+												</div>
+											{% endif %}
+											{% if post.cosmo_type != 'solar' %}
+												<div class="col-12 p-0 d-flex">
+													<div class="col-7 px-0">
+														<span class="text-white">
+															<img src="{{ site.theme.link }}/assets/images/c_icon.png" width="40">Cura
+														</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">2,15%</span>
+													</div>
+													<div class="col-2 my-auto">
+														<span class="text-white">1,94%</span>
+													</div>
+												</div>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

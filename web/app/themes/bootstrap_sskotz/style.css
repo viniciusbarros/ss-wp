@@ -40,7 +40,7 @@ header {
 
 
 .parallex-bg {
-    background-image: url("/app/themes/bootstrap_sskotz/assets/images/bg.jpg");
+    background-image: url("/app/themes/bootstrap_sskotz/assets/images/banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -227,7 +227,7 @@ header {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    height: 440px;
+    height: 460px;
     background: #1f1f22 50%;
     background-size: cover;
     transition: all .5s ease-in-out;
@@ -273,7 +273,6 @@ header {
 
 .post-card:hover{
     transform: scale(1.06);
-    cursor: pointer;
 }
 
 .post-card-image-link {
@@ -634,6 +633,7 @@ main section:last-child{
     box-sizing: border-box;
     position: relative;
     vertical-align: middle;
+    min-height: 270px;
     
 }
 .cosmo-card::before,
@@ -749,6 +749,212 @@ main section:last-child{
     box-shadow: 0 0 20px #5c7cbf;
 }
 
+
+.post-page-full{
+    position: relative;
+}
+
+.post-page-full .post-full-header{
+    border: 1px solid#2b2b30;
+    border-bottom-color: rgb(43, 43, 48);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom: none;
+    position: relative;
+    padding-top: 24px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    background:rgba(19,19,21,.9);
+}
+
+.post-page-full .post-full-header .post-full-meta, .post-full-title {
+    font-weight: lighter;
+}
+.post-page-full .post-full-header .post-full-meta .post-full-meta-date {
+    color: #ffb320;
+}
+
+.post-page-full .post-full-header .post-full-meta .date-divider, .post-page-full .post-full-header .post-full-meta .post-tag {
+    color: #999;
+}
+
+.post-page-full .post-full-header .post-full-meta{
+    text-transform: uppercase;
+}
+
+.post-page-full .post-full-header .post-full-title {
+    font-size: 3em;
+    margin: 10px 0 0;
+    color: #eee;
+}
+
+.post-page-full .pd-post-body {
+    position: relative;
+    border: 1px solid #2b2b30;
+    border-top-color: rgb(43, 43, 48);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top: 0 solid#2b2b30;
+    background:#1f1f22;
+    padding: 20px 50px;
+    margin-bottom: 40px;
+}
+
+.post-page-full .post-full-content {
+    min-height: 230px;
+}
+
+.post-page-full .post-content p {
+    margin: 0 0 .8em;
+    line-height: 1.2em;
+}
+
+.post-page-full .post-content h1 {
+    font-size: 2.8em;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,179,32,.5);
+}
+.post-page-full .post-content h1 {
+    color: #ffb320;
+    margin: 18px 0 8px;
+    margin-bottom: 8px;
+    font-weight: lighter;
+}
+
+.post-page-full .post-content h2 {
+    font-size: 2em;
+    color:#ae74b9;
+    margin: 18px 0 8px;
+}
+
+.post-page-full .post-content p {
+    color: white;
+    margin: 0 0 .8em;
+    line-height: 1.2em;
+}
+
+.post-page-full .post-full-footer {
+    margin-top: 2vw;
+    border-top: 1px solid #2b2b30;
+}
+
+.post-page-full .post-full-footer .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 840px;
+}
+
+.post-page-full .post-img{
+    margin-bottom: 2rem;
+}
+
+.post-page-full .author-card {
+    display: flex;
+    padding: 2rem;
+}
+.post-page-full .author-card:hover {
+    text-decoration: none;
+}
+.post-page-full .author-card .author-profile-image, .post-page-full .author-card .avatar-wrapper {
+    position: relative;
+    margin-right: 15px;
+}
+.post-page-full .author-card .author-profile-image, .post-page-full .author-card .avatar-wrapper {
+    width: 60px;
+    height: 60px;
+}
+.author-profile-image, .avatar-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: 
+    #eee;
+    border-radius: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.post-page-full .author-card-name {
+    margin: 4px 0 2px;
+    padding: 0;
+    font-size: 1.25rem;
+}
+
+.post-page-full .author-card-content p {
+    margin: 0;
+    color: #eee;
+    line-height: 1.3em;
+}
+
+.post-page-full .author-card-name span {
+    color: #999;
+}
+
+.cosmo-info{
+    min-height: 270px;
+}
+
+.cosmo-info .cosmo-title-legendary{
+    background: linear-gradient(to right, #a483ca , transparent);  
+}
+.cosmo-info .cosmo-title-legendary span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-solar{
+    background: linear-gradient(to right, #fbaf80 , transparent);  
+}
+.cosmo-info .cosmo-title-solar span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-lunar{
+    background: linear-gradient(to right, #e9b13f , transparent);  
+}
+.cosmo-info .cosmo-title-lunar span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-info .cosmo-title-star{
+    background: linear-gradient(to right, #8287d4 , transparent);  
+}
+.cosmo-info .cosmo-title-star span{
+    font-size: 1.2em;
+    color: #000000;
+}
+
+.cosmo-xpinfo .cosmo-header span:first-child{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.cosmo-xpinfo .cosmo-header span:last-child{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.author-header{
+    border: 1px solid#2b2b30;
+    border-bottom-color: rgb(43, 43, 48);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom: none;
+    position: relative;
+    padding-top: 24px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    background:rgba(19,19,21,.9);
+}
+
+.author-body{
+    padding: 20px 0px;
+}
 
 @media (max-width: 575px) {
     .logo-jumbotron {

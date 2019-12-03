@@ -1,39 +1,47 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.date }}
-				</p>
-				<div class="article-body">
-					{{post.content}}
+	<section>
+		<div class="content-wrapper">
+			<article class="post-page-full">
+				<header class="post-full-header">
+					<div class="post-full-meta">
+						<time class="post-full-meta-date" datetime="{{post.post_date_gmt}}">{{ post.date }}</time>
+						<span class="date-divider">/</span>
+						{% for cat in cats %}
+							<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+						{% endfor %}
+					</div>
+					<h1 class="post-full-title">{{post.title}}</h1>
+				</header>
+				<div class="pd-post-body">
+					<div class="post-full-content">
+						<div class="post-img">
+							<img src="{{post.thumbnail.src}}" class="img-fluid">
+						</div>
+						<div class="post-content">
+							{{post.content}}
+						</div>
+					</div>
+					<footer class="post-full-footer">
+						<div class="content">
+							<a class="author-card" href='{{post.author.link}}'>
+								<img class="author-profile-image" src="{{post.author.avatar}}" alt="{{post.author.name}}">
+								<div class="author-card-content">
+									<h4 class="author-card-name">
+										<span>{{post.author.name}}</span>
+									</h4>
+									<p>
+										{% for role in post.author.roles %}
+											{{role}}
+										{% endfor %}
+									</p>
+								</div>
+							</a>
+						</div>
+					</footer>
 				</div>
-			</section>
-
-			<!-- comment box -->
-			<section class="comment-box">
-				<!-- comments -->
-				<div class="comments">
-				    {% if post.comments %}
-					<h3> comments </h3>
-					{% for cmt in post.comments %}
-					    {% include "comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				    {% endif %}
-				</div>
-
-				{% if post.comment_status == "closed" %}
-					<p> comments for this post are closed </p>
-				{% else %}
-				    <!-- comment form -->
-				    {% include "comment-form.twig" %}
-				{% endif %}
-			</section>
-		</article>
-	</div><!-- /content-wrapper -->
+			</article>
+		</div>
+	</section>
 {% endblock %}
