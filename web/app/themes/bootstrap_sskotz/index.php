@@ -17,6 +17,14 @@
 $context          = Timber::context();
 $context['posts'] = new Timber\PostQuery();
 
+define('ROLE_MAP', [
+	'administrator' => 'Administrador',
+	'author' => 'Autor',
+	'contributor' => 'Contribuidor',
+	'editor' => 'Editor',
+	'subscriber' => 'Assinante'
+]);
+
 // Arrays para cada postagem
 $publics = [];
 $events = [];
@@ -25,6 +33,57 @@ $banners = [];
 $atts = [];
 $characters = [];
 $team = [];
+
+/**
+ * Returns extra info about a given user
+ *
+ * @param [type] $person
+ * @return array
+ */
+function getUserInfo($person)
+{
+	$user = [];
+	foreach (['discord', 'twitter', 'facebook'] as $socialMedia) {
+		$media = get_user_meta($person->ID, $socialMedia);
+		if (isset($media[0]) && !empty($media[0])) {
+			$user[$socialMedia] = $media[0];
+		}
+	}
+
+	$live = get_user_meta($person->ID, 'live');
+
+	if (isset($live[0]) && !empty($live[0])) {
+		$user['live'] = $live[0];
+		if (strpos($live[0], 'twitch') != '') {
+			$user['plataform_live'] = 'twitch';
+		} else if (strpos($live[0], 'youtube') != '') {
+			$user['plataform_live'] = 'youtube';
+		} else if (strpos($live[0], 'facebook') != '') {
+			$user['plataform_live'] = 'facebook';
+		} else {
+			$user['plataform_live'] = 'other';
+		}
+	}
+
+	return $user;
+}
+
+/**
+ * Returns all roles as text
+ *
+ * @param [type] $user
+ * @return string
+ */
+function getUserRolesAsText($user)
+{
+	$roles = [];
+	foreach ($user->roles as $role) {
+		$roles[] = ROLE_MAP[$role];
+	}
+
+	return implode(", ", $roles);
+}
+
 
 // Buscar postagens para aba de ultimos personagens lançados
 $context['character'] = Timber::get_posts([
@@ -183,55 +242,16 @@ $users = get_users([
 // Filtrar os campos dos posts buscados
 foreach ($users as $user) {
 	$person = get_userdata($user->ID);
-	$caps = wp_roles();
-	$roles = '';
-	foreach ($person->roles as $role) {
-		if ($role == 'administrator') {
-			$roles = $roles . 'Administrador' . ', ';
-		} else if ($role == 'author') {
-			$roles = $roles . 'Autor' . ', ';
-		} else if ($role == 'contributor') {
-			$roles = $roles . 'Contribuidor' . ', ';
-		} else if ($role == 'editor') {
-			$roles = $roles . 'Editor' . ', ';
-		} else if ($role == 'subscriber') {
-			$roles = $roles . 'Assinante' . ', ';
-		}
-	}
-	$roles = rtrim($roles, ', ');
 	$user = [
 		'name' => $person->name,
 		'avatar' => get_avatar_url($person->ID),
-		'role' => $roles,
+		'role' => getUserRolesAsText($person)
 	];
-	$discord = get_user_meta($person->ID, 'discord');
-	$twitter = get_user_meta($person->ID, 'twitter');
-	$facebook = get_user_meta($person->ID, 'facebook');
-	$live = get_user_meta($person->ID, 'live');
-	if ($discord[0] != '') {
-		$user['discord'] = $discord[0];
-	}
-	if ($facebook[0] != '') {
-		$user['facebook'] = $facebook[0];
-	}
-	if ($twitter[0] != '') {
-		$user['twitter'] = $twitter[0];
-	}
-	if ($live[0] != '') {
-		$user['live'] = $live[0];
-		if (strpos($live[0], 'twitch') != '') {
-			$user['plataform_live'] = 'twitch';
-		} else if (strpos($live[0], 'youtube') != '') {
-			$user['plataform_live'] = 'youtube';
-		} else if (strpos($live[0], 'facebook') != '') {
-			$user['plataform_live'] = 'facebook';
-		} else {
-			$user['plataform_live'] = 'other';
-		}
-	}
-	$team[] = array_merge($user);
-}
 
+	$extraInfo = getUserInfo($person);
+
+	$team[] = array_merge($user, $extraInfo);
+}
 
 // Passando os arrays para dentro do context
 $context['author'] = $team;
