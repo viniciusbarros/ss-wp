@@ -40,17 +40,29 @@ if ($context['post']->post_type == 'characters') {
 		'character_speed_rank' => $context['post']['character_speed_rank'],
 		'character_avatar' => $context['post']['character_avatar'],
 	];
+	$count = 0;
 	foreach ($context['post']['character_cosmo_legendary'] as $cosmo) {
-		$legendary[] = get_fields($cosmo->ID);
+		$legendary[$count] = get_fields($cosmo->ID);
+		$legendary[$count]['link'] = get_permalink($context['post']['character_cosmo_legendary'][$count]->ID);
+		$count++;
 	}
+	$count = 0;
 	foreach ($context['post']['character_cosmo_solar'] as $cosmo) {
-		$solar[] = get_fields($cosmo->ID);
+		$solar[$count] = get_fields($cosmo->ID);
+		$solar[$count]['link'] = get_permalink($context['post']['character_cosmo_solar'][$count]->ID);
+		$count++;
 	}
+	$count = 0;
 	foreach ($context['post']['character_cosmo_lunar'] as $cosmo) {
-		$lunar[] = get_fields($cosmo->ID);
+		$lunar[$count] = get_fields($cosmo->ID);
+		$lunar[$count]['link'] = get_permalink($context['post']['character_cosmo_lunar'][$count]->ID);
+		$count++;
 	}
+	$count = 0;
 	foreach ($context['post']['character_cosmo_star'] as $cosmo) {
-		$star[] = get_fields($cosmo->ID);
+		$star[$count] = get_fields($cosmo->ID);
+		$star[$count]['link'] = get_permalink($context['post']['character_cosmo_star'][$count]->ID);
+		$count++;
 	}
 	$skills = get_fields($context['post']['character_skills']->ID);
 	unset($skills['skill_qnt']);
@@ -58,7 +70,6 @@ if ($context['post']->post_type == 'characters') {
 	$cosmos['solar'] = array_merge($solar);
 	$cosmos['lunar'] = array_merge($lunar);
 	$cosmos['star'] = array_merge($star);
-
 	$character['cosmos'] = array_merge($cosmos);
 	$character['skills'] = array_merge($skills);
 	$context['post'] = $character;
@@ -83,7 +94,6 @@ if ($context['post']->post_type == 'characters') {
 	}
 	$days = rtrim($days, ', ');
 	$days .= " )";
-	$days;
 	$cosmo['cosmo_drop_days'] = $days;
 	$cosmo['cosmo_status1_tipo'] = $data['cosmo_status1']['tipo'];
 	$cosmo['cosmo_status1_max'] = $data['cosmo_status1']['max'];

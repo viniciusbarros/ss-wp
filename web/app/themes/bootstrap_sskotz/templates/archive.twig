@@ -1,14 +1,12 @@
 {% extends "index.twig" %}
 
 {% block content %}
-
 	<section class="news-section section">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 mb-3 text-center">
 					<h2 class="text-uppercase text-white">Novidades</h2>
-					<p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero
-																																																																																																                    voluptatem.</p>
+					<p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe libero voluptatem.</p>
 				</div>
 			</div>
 			<div class="row align-items-center">
@@ -38,13 +36,13 @@
 					</h2>
 				</div>
 				{% for post in posts %}
-					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
-						<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation" onclick="window.location.href = '{{ post.post_link }}'">
-							<div class="post-card-image-link">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+						<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+							<a class="post-card-image-link" href="{{ post.post_link }}">
 								<img src="{{ post.post_img }}" class="post-card-image">
-							</div>
+							</a>
 							<div class="post-card-content">
-								<div class="post-card-content-link">
+								<a class="post-card-content-link" href="{{ post.post_link }}">
 									<header class="post-card-header">
 										<span class="post-card-tags">
 											{% for category in post.post_category %}
@@ -56,7 +54,7 @@
 									<section class="post-card-excerpt">
 										<p>{{ post.post_desc }}</p>
 									</section>
-								</div>
+								</a>
 								<footer class="post-card-meta">
 									<ul class="author-list">
 										<li class="author-list-item">

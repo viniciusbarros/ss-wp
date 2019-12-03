@@ -40,7 +40,7 @@ header {
 
 
 .parallex-bg {
-    background-image: url("/app/themes/bootstrap_sskotz/assets/images/bg.jpg");
+    background-image: url("/app/themes/bootstrap_sskotz/assets/images/banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
@@ -273,7 +273,6 @@ header {
 
 .post-card:hover{
     transform: scale(1.06);
-    cursor: pointer;
 }
 
 .post-card-image-link {
@@ -854,8 +853,11 @@ main section:last-child{
 
 .post-page-full .author-card {
     display: flex;
+    padding: 2rem;
 }
-
+.post-page-full .author-card:hover {
+    text-decoration: none;
+}
 .post-page-full .author-card .author-profile-image, .post-page-full .author-card .avatar-wrapper {
     position: relative;
     margin-right: 15px;
@@ -935,6 +937,23 @@ main section:last-child{
 .cosmo-xpinfo .cosmo-header span:last-child{
     font-size: 1.2em;
     font-weight: bolder;
+}
+
+.author-header{
+    border: 1px solid#2b2b30;
+    border-bottom-color: rgb(43, 43, 48);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom: none;
+    position: relative;
+    padding-top: 24px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    background:rgba(19,19,21,.9);
+}
+
+.author-body{
+    padding: 20px 0px;
 }
 
 @media (max-width: 575px) {

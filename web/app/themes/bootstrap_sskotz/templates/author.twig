@@ -1,7 +1,93 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	{% for post in posts %}
-		{% include ["tease-"~post.post_type~".twig", "tease.twig"] %}
-	{% endfor %}
+	<section class="author-section section">
+		<div class="container">
+			<div class="row author-header">
+				<div class="col-12 d-flex">
+					<div class="col-4 col-xl-2">
+						<img src='{{author.avatar}}' class="img-fluid rounded-circle">
+					</div>
+					<div class="col-6 col-xl-7 my-auto">
+						<div class="col-12 p-0">
+							<h3 class="text-white">{{ author.name }}</h3>
+							<span class="text-white-50">{{ author.role }}</span>
+						</div>
+						<div class="col-12 p-0">
+							<ul class="social mb-0 list-inline mt-3">
+								{% if author.discord is defined %}
+									<li class="list-inline-item">
+										<a href="{{author.discord}}" target="_blank" class="social-link">
+											<i class="fab fa-discord"></i>
+										</a>
+									</li>
+								{% endif %}
+								{% if author.facebook is defined %}
+									<li class="list-inline-item">
+										<a href="{{author.facebook}}" target="_blank" class="social-link">
+											<i class="fab fa-facebook"></i>
+										</a>
+									</li>
+								{% endif %}
+								{% if author.twitter is defined %}
+									<li class="list-inline-item">
+										<a href="{{author.twitter}}" target="_blank" class="social-link">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+								{% endif %}
+								{% if author.live is defined %}
+									<li class="list-inline-item">
+										<a href="{{author.live}}" target="_blank" class="social-link">
+											<i class="{% if author.plataform_live == 'twitch' %}fab fa-twitch{% elseif author.plataform_live == 'youtube' %}fab fa-youtube{% elseif author.plataform_live == 'facebook' %}fa-facebook-f{% else %}fa fa-headset {% endif %}"></i>
+										</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				{% for post in posts %}{% endfor %}
+			</div>
+			<div class="row author-body px-2">
+				<div class="col-12 mb-4">
+					<h3 class="text-white text-uppercase">Postagens</h3>
+				</div>
+				{% for post in posts %}
+					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
+						<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+							<a class="post-card-image-link" href="{{ post.post_link }}">
+								<img src="{{ post.post_img }}" class="post-card-image">
+							</a>
+							<div class="post-card-content">
+								<a class="post-card-content-link" href="{{ post.post_link }}">
+									<header class="post-card-header">
+										<span class="post-card-tags">
+											{% for category in post.post_category %}
+												{{category.name}}
+											{% endfor %}
+										</span>
+										<h2 class="post-card-title">{{ post.post_title }}</h2>
+									</header>
+									<section class="post-card-excerpt">
+										<p>{{ post.post_desc }}</p>
+									</section>
+								</a>
+								<footer class="post-card-meta">
+									<ul class="author-list">
+										<li class="author-list-item">
+											<a href="#" class="static-avatar">
+												<img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+											</a>
+										</li>
+									</ul>
+									<span class="reading-time">{{ post.post_date }}</span>
+								</footer>
+							</div>
+						</article>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 {% endblock %}

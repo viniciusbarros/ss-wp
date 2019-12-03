@@ -17,7 +17,7 @@
 							<h5 class="text-white-50 mt-2">Lendário</h5>
 							{% for cosmo in post.cosmos.legendary %}
 								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
-									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+									<a href='{{cosmo.link}}'><img src="{{cosmo.cosmo_img.url}}" class="img-fluid"></a>
 								</div>
 							{% endfor %}
 						</div>
@@ -25,7 +25,7 @@
 							<h5 class="text-white-50 mt-2">Solar</h5>
 							{% for cosmo in post.cosmos.solar %}
 								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
-									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+									<a href='{{cosmo.link}}'><img src="{{cosmo.cosmo_img.url}}" class="img-fluid"></a>
 								</div>
 							{% endfor %}
 						</div>
@@ -33,7 +33,7 @@
 							<h5 class="text-white-50 mt-2">Lunar</h5>
 							{% for cosmo in post.cosmos.lunar %}
 								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
-									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+									<a href='{{cosmo.link}}'><img src="{{cosmo.cosmo_img.url}}" class="img-fluid"></a>
 								</div>
 							{% endfor %}
 						</div>
@@ -41,7 +41,7 @@
 							<h5 class="text-white-50 mt-2">Estrela</h5>
 							{% for cosmo in post.cosmos.star %}
 								<div class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-4 d-inline-block cosmo">
-									<img src="{{cosmo.cosmo_img.url}}" class="img-fluid">
+									<a href='{{cosmo.link}}'><img src="{{cosmo.cosmo_img.url}}" class="img-fluid"></a>
 								</div>
 							{% endfor %}
 						</div>

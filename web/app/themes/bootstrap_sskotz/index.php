@@ -59,8 +59,9 @@ foreach ($context['public'] as $post) {
 	$public = [
 		'post_title' => $post->post_title,
 		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta($post->post_author),
+		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
+		'post_author_link' => get_author_posts_url($post->post_author),
 		'post_tag' => get_the_category($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -84,8 +85,9 @@ foreach ($context['event'] as $post) {
 	$event = [
 		'post_title' => $post->post_title,
 		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta($post->post_author),
+		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
+		'post_author_link' => get_author_posts_url($post->post_author),
 		'post_tag' => get_the_category($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -109,8 +111,9 @@ foreach ($context['activity'] as $post) {
 	$activity = [
 		'post_title' => $post->post_title,
 		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta($post->post_author),
+		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
+		'post_author_link' => get_author_posts_url($post->post_author),
 		'post_tag' => get_the_category($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -134,8 +137,9 @@ foreach ($context['banner'] as $post) {
 	$banner = [
 		'post_title' => $post->post_title,
 		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta($post->post_author),
+		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
+		'post_author_link' => get_author_posts_url($post->post_author),
 		'post_tag' => get_the_category($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -159,8 +163,9 @@ foreach ($context['atts'] as $post) {
 	$att = [
 		'post_title' => $post->post_title,
 		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta($post->post_author),
+		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
 		'post_author_avatar' => get_avatar_url($post->post_author),
+		'post_author_link' => get_author_posts_url($post->post_author),
 		'post_tag' => get_the_category($post->ID),
 		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -170,33 +175,66 @@ foreach ($context['atts'] as $post) {
 }
 
 // Buscar os membros da equipe
-$context['team'] = Timber::get_posts([
-	'post_type' => 'members',
-	'post_satus' => 'publish',
+$users = get_users([
+	'post_per_page' => 6,
 	'orderby' => 'rand',
-	'numberposts' => -1,
 ]);
 
 // Filtrar os campos dos posts buscados
-$cont = 1;
-foreach ($context['team'] as $person) {
-	$data = get_fields($person->ID);
-	if (($data['member_type'] != 'Apoiador') and $cont < 6) {
-		$sigle = [
-			'name' => $data['member_name'],
-			'type' => $data['member_type'],
-			'photo' => $data['team']['photo']['url'],
-			'discord' => $data['team']['discord'],
-			'twitter' => $data['team']['twitter'],
-			'plataform' => $data['team']['plat_live'],
-			'live' => $data['team']['live'],
-		];
-		$team[] = array_merge($sigle);
-		$cont++;
+foreach ($users as $user) {
+	$person = get_userdata($user->ID);
+	$caps = wp_roles();
+	$roles = '';
+	foreach ($person->roles as $role) {
+		if ($role == 'administrator') {
+			$roles = $roles . 'Administrador' . ', ';
+		} else if ($role == 'author') {
+			$roles = $roles . 'Autor' . ', ';
+		} else if ($role == 'contributor') {
+			$roles = $roles . 'Contribuidor' . ', ';
+		} else if ($role == 'editor') {
+			$roles = $roles . 'Editor' . ', ';
+		} else if ($role == 'subscriber') {
+			$roles = $roles . 'Assinante' . ', ';
+		}
 	}
+	$roles = rtrim($roles, ', ');
+	$user = [
+		'name' => $person->name,
+		'avatar' => get_avatar_url($person->ID),
+		'role' => $roles,
+	];
+	$discord = get_user_meta($person->ID, 'discord');
+	$twitter = get_user_meta($person->ID, 'twitter');
+	$facebook = get_user_meta($person->ID, 'facebook');
+	$live = get_user_meta($person->ID, 'live');
+	if ($discord[0] != '') {
+		$user['discord'] = $discord[0];
+	}
+	if ($facebook[0] != '') {
+		$user['facebook'] = $facebook[0];
+	}
+	if ($twitter[0] != '') {
+		$user['twitter'] = $twitter[0];
+	}
+	if ($live[0] != '') {
+		$user['live'] = $live[0];
+		if (strpos($live[0], 'twitch') != '') {
+			$user['plataform_live'] = 'twitch';
+		} else if (strpos($live[0], 'youtube') != '') {
+			$user['plataform_live'] = 'youtube';
+		} else if (strpos($live[0], 'facebook') != '') {
+			$user['plataform_live'] = 'facebook';
+		} else {
+			$user['plataform_live'] = 'other';
+		}
+	}
+	$team[] = array_merge($user);
 }
 
+
 // Passando os arrays para dentro do context
+$context['author'] = $team;
 $context['public'] = $publics;
 $context['event'] = $events;
 $context['activity'] = $activitys;
