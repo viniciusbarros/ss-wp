@@ -23,7 +23,7 @@
 								<div class="container-fluid m-auto">
 									<div class="row">
 										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
-											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-legendary" alt="{{cosmo.cosmo_name}}">
+											<img src="{{cosmo.cosmo_img.url}}" class="img-fluid cosmo-img cosmo-legendary" alt="{{cosmo.cosmo_name}}">
 										</div>
 										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg  m-auto">
 											<div class="py-2">
@@ -32,16 +32,16 @@
 												</div>
 												<div class="col-12 rounded-l mb-2 cosmo-status">
 													<div class="d-inline-block">
-														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo }}">
 													</div>
-													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1.max }}</div>
 												</div>
-												{% if cosmo.cosmo_status2_tipo != '' %}
+												{% if cosmo.cosmo_qntstatus > 1 %}
 													<div class="col-12 rounded-l mb-2 cosmo-status">
 														<div class="d-inline-block">
-															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo2 }}">
 														</div>
-														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2.max }}</div>
 													</div>
 												{% endif %}
 											</div>
@@ -81,7 +81,7 @@
 								<div class="container-fluid m-auto">
 									<div class="row">
 										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
-											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-solar" alt="{{cosmo.cosmo_name}}">
+											<img src="{{cosmo.cosmo_img.url}}" class="img-fluid cosmo-img cosmo-solar" alt="{{cosmo.cosmo_name}}">
 										</div>
 										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg m-auto">
 											<div class="py-2">
@@ -90,16 +90,16 @@
 												</div>
 												<div class="col-12 rounded-l mb-2 cosmo-status">
 													<div class="d-inline-block">
-														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo }}">
 													</div>
-													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1.max }}</div>
 												</div>
-												{% if cosmo.cosmo_status2_tipo != '' %}
+												{% if cosmo.cosmo_status2.tipo != '' %}
 													<div class="col-12 rounded-l mb-2 cosmo-status">
 														<div class="d-inline-block">
-															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo2 }}">
 														</div>
-														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2.max }}</div>
 													</div>
 												{% endif %}
 											</div>
@@ -143,7 +143,7 @@
 								<div class="container-fluid m-auto">
 									<div class="row">
 										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
-											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-lunar" alt="{{cosmo.cosmo_name}}">
+											<img src="{{cosmo.cosmo_img.url}}" class="img-fluid cosmo-img cosmo-lunar" alt="{{cosmo.cosmo_name}}">
 										</div>
 										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg m-auto">
 											<div class="py-2">
@@ -152,16 +152,16 @@
 												</div>
 												<div class="col-12 rounded-l mb-2 cosmo-status">
 													<div class="d-inline-block">
-														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo }}">
 													</div>
-													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1.max }}</div>
 												</div>
-												{% if cosmo.cosmo_status2_tipo != '' %}
+												{% if cosmo.cosmo_qntstatus > 1 %}
 													<div class="col-12 rounded-l mb-2 cosmo-status">
 														<div class="d-inline-block">
-															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo2 }}">
 														</div>
-														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2.max }}</div>
 													</div>
 												{% endif %}
 											</div>
@@ -205,7 +205,7 @@
 								<div class="container-fluid m-auto">
 									<div class="row">
 										<div class="col-4 col-sm-4 col-md-5 col-lg-4 col-xl-5 m-auto">
-											<img src="{{cosmo.cosmo_img}}" class="img-fluid cosmo-img cosmo-star" alt="{{cosmo.cosmo_name}}">
+											<img src="{{cosmo.cosmo_img.url}}" class="img-fluid cosmo-img cosmo-star" alt="{{cosmo.cosmo_name}}">
 										</div>
 										<div class="col-8 col-sm-8 col-md-7 col-lg-8 col-xl-7 text-left rounded-lg m-auto">
 											<div class="py-2">
@@ -214,16 +214,16 @@
 												</div>
 												<div class="col-12 rounded-l mb-2 cosmo-status">
 													<div class="d-inline-block">
-														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo }}">
+														<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status1.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo }}">
 													</div>
-													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1_max }}</div>
+													<div class="text-white d-inline-block">{{ cosmo.cosmo_status1.max }}</div>
 												</div>
-												{% if cosmo.cosmo_status2_tipo != '' %}
+												{% if cosmo.cosmo_qntstatus > 1 %}
 													<div class="col-12 rounded-l mb-2 cosmo-status">
 														<div class="d-inline-block">
-															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2_tipo }}_icon" alt="{{ cosmo.cosmo_status1_tipo2 }}">
+															<img src="{{ site.theme.link }}/assets/images/{{ cosmo.cosmo_status2.tipo }}_icon" alt="{{ cosmo.cosmo_status1.tipo2 }}">
 														</div>
-														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2_max }}</div>
+														<div class="text-white d-inline-block">{{ cosmo.cosmo_status2.max }}</div>
 													</div>
 												{% endif %}
 											</div>
@@ -245,5 +245,6 @@
 				{% endfor %}
 			</div>
 		</div>
+		{{ next_page_links }}
 	</section>
 {% endblock %}

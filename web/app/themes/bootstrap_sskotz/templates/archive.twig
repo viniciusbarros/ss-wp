@@ -39,7 +39,7 @@
 					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
 						<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
 							<a class="post-card-image-link" href="{{ post.post_link }}">
-								<img src="{{ post.post_img }}" class="post-card-image">
+								<img src="{{ post.post_thumb.url }}" class="post-card-image">
 							</a>
 							<div class="post-card-content">
 								<a class="post-card-content-link" href="{{ post.post_link }}">
@@ -93,5 +93,6 @@
 			</div>
 		</div>
 	</section>
+	{{ next_page_links }}
 
 {% endblock %}
