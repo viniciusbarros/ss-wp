@@ -1,3 +1,5 @@
+/* Main css */
+
 @import url('/app/themes/bootstrap_sskotz/assets/fonts/roboto/font.css');
 @import url("/app/themes/bootstrap_sskotz/assets/fonts/fontawesome/css/all.min.css");
 
@@ -20,22 +22,6 @@ header {
     width: 100%;
     position: relative;
     transition: .3s ease all;
-}
-
-#new-saint .title-saint h3{
-    color: #999999 !important;
-}
-#tiers-saint .title-saint h3{
-    color: #b6d7a8 !important;
-}
-#tiera-saint .title-saint h3{
-    color: #f9cb9c !important;
-}
-#tierb-saint .title-saint h3{
-    color: #d0e0e3 !important;
-}
-#tierc-saint .title-saint h3{
-    color: #e6b8af !important;
 }
 
 
@@ -243,6 +229,7 @@ header {
   position: absolute;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }  
 
 .post-card-animation::before,
@@ -335,7 +322,6 @@ header {
 .post-card .post-card-excerpt {
     color: #ddd;
 }
-
 .tabs-index {
     margin: 20px 0;
     text-align: center;
@@ -392,21 +378,6 @@ header {
     transition: opacity .15s linear !important;
     -webkit-transition: opacity .15s linear !important;
 }
-.guide-block {
-    transition: all .15s ease-in-out;
-    max-width: 250px;
-}
-.guide-block a {
-    color: white;
-}
-.guide-block a:hover{
-    color: #fff;
-}
-.guide-block:hover {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-}
-
 .saint-block {
     transition: all .5s ease-in-out;
 }
@@ -537,97 +508,6 @@ main section:last-child{
     padding-bottom: 2rem !important;
 }
 
-.type-status, .status{
-    font-size: 18px;
-    vertical-align: middle;
-}
-.status{
-    float: right;
-}
-
-.status-display{
-    background-color: #1b1b1f;
-}
-
-.status-block{
-    line-height: 40px;
-}
-
-.star-block h1, h2{
-    line-height: 60px;
-}
-
-.star-block img{
-    line-height: 60px;
-}
-
-.font-stroke{
-    text-shadow:-1px -1px 0 #000, 1px -1px 0 #000,-1px 1px 0 #000, 1px 1px 0 #000;
-}
-
-.skills{
-    background-color: #1b1b1f;
-    position: relative;
-}
-
-.skills > .skill-up{
-    color: black;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0rem 1rem;
-    text-align: center;
-    background: #DBB000;
-    width: 30%
-}
-
-.skills .skill-img{
-    background-color:#fff;
-    border: 3px solid #dee2e6;
-    border-radius: 50%;
-    max-width: 100%;
-    height: auto;
-}
-
-.skill-cost{
-    background: url('/app/themes/bootstrap_sskotz/assets/images/cost_icon.png');
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;;
-}
-
-.skill-cost span{
-    line-height: 30px;
-    font-size: 18px;
-    width: 8px;
-}
-
-.type-passive{
-    color: #36144f;
-    border-radius: 1rem;
-    text-align: center;
-    background: linear-gradient(#c7c7fb ,#d5b4fe, #c7c7fb);
-}
-
-.type-skill{
-    color: #6c471f;
-    border-radius: 1rem;
-    text-align: center;
-    background: linear-gradient(#fdd78d ,#edbb7a, #fdd78d);
-}
-
-.type-atqb{
-    color:#1a2651;
-    border-radius: 1rem;
-    text-align: center;
-    background: linear-gradient(#4bd7ff ,#42a6fe, #4bd7ff);
-}
-
 .cosmo-card{
     background-color: #1b1b1f;
     box-sizing: border-box;
@@ -749,213 +629,6 @@ main section:last-child{
     box-shadow: 0 0 20px #5c7cbf;
 }
 
-
-.post-page-full{
-    position: relative;
-}
-
-.post-page-full .post-full-header{
-    border: 1px solid#2b2b30;
-    border-bottom-color: rgb(43, 43, 48);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom: none;
-    position: relative;
-    padding-top: 24px;
-    padding-left: 25px;
-    padding-bottom: 25px;
-    background:rgba(19,19,21,.9);
-}
-
-.post-page-full .post-full-header .post-full-meta, .post-full-title {
-    font-weight: lighter;
-}
-.post-page-full .post-full-header .post-full-meta .post-full-meta-date {
-    color: #ffb320;
-}
-
-.post-page-full .post-full-header .post-full-meta .date-divider, .post-page-full .post-full-header .post-full-meta .post-tag {
-    color: #999;
-}
-
-.post-page-full .post-full-header .post-full-meta{
-    text-transform: uppercase;
-}
-
-.post-page-full .post-full-header .post-full-title {
-    font-size: 3em;
-    margin: 10px 0 0;
-    color: #eee;
-}
-
-.post-page-full .pd-post-body {
-    position: relative;
-    border: 1px solid #2b2b30;
-    border-top-color: rgb(43, 43, 48);
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top: 0 solid#2b2b30;
-    background:#1f1f22;
-    padding: 20px 50px;
-    margin-bottom: 40px;
-}
-
-.post-page-full .post-full-content {
-    min-height: 230px;
-}
-
-.post-page-full .post-content p {
-    margin: 0 0 .8em;
-    line-height: 1.2em;
-}
-
-.post-page-full .post-content h1 {
-    font-size: 2.8em;
-    padding-bottom: 4px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(255,179,32,.5);
-}
-.post-page-full .post-content h1 {
-    color: #ffb320;
-    margin: 18px 0 8px;
-    margin-bottom: 8px;
-    font-weight: lighter;
-}
-
-.post-page-full .post-content h2 {
-    font-size: 2em;
-    color:#ae74b9;
-    margin: 18px 0 8px;
-}
-
-.post-page-full .post-content p {
-    color: white;
-    margin: 0 0 .8em;
-    line-height: 1.2em;
-}
-
-.post-page-full .post-full-footer {
-    margin-top: 2vw;
-    border-top: 1px solid #2b2b30;
-}
-
-.post-page-full .post-full-footer .content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 840px;
-}
-
-.post-page-full .post-img{
-    margin-bottom: 2rem;
-}
-
-.post-page-full .author-card {
-    display: flex;
-    padding: 2rem;
-}
-.post-page-full .author-card:hover {
-    text-decoration: none;
-}
-.post-page-full .author-card .author-profile-image, .post-page-full .author-card .avatar-wrapper {
-    position: relative;
-    margin-right: 15px;
-}
-.post-page-full .author-card .author-profile-image, .post-page-full .author-card .avatar-wrapper {
-    width: 60px;
-    height: 60px;
-}
-.author-profile-image, .avatar-wrapper {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: 
-    #eee;
-    border-radius: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-}
-
-.post-page-full .author-card-name {
-    margin: 4px 0 2px;
-    padding: 0;
-    font-size: 1.25rem;
-}
-
-.post-page-full .author-card-content p {
-    margin: 0;
-    color: #eee;
-    line-height: 1.3em;
-}
-
-.post-page-full .author-card-name span {
-    color: #999;
-}
-
-.cosmo-info{
-    min-height: 270px;
-}
-
-.cosmo-info .cosmo-title-legendary{
-    background: linear-gradient(to right, #a483ca , transparent);  
-}
-.cosmo-info .cosmo-title-legendary span{
-    font-size: 1.2em;
-    color: #000000;
-}
-
-.cosmo-info .cosmo-title-solar{
-    background: linear-gradient(to right, #fbaf80 , transparent);  
-}
-.cosmo-info .cosmo-title-solar span{
-    font-size: 1.2em;
-    color: #000000;
-}
-
-.cosmo-info .cosmo-title-lunar{
-    background: linear-gradient(to right, #e9b13f , transparent);  
-}
-.cosmo-info .cosmo-title-lunar span{
-    font-size: 1.2em;
-    color: #000000;
-}
-
-.cosmo-info .cosmo-title-star{
-    background: linear-gradient(to right, #8287d4 , transparent);  
-}
-.cosmo-info .cosmo-title-star span{
-    font-size: 1.2em;
-    color: #000000;
-}
-
-.cosmo-xpinfo .cosmo-header span:first-child{
-    font-size: 1.2em;
-    font-weight: bolder;
-}
-
-.cosmo-xpinfo .cosmo-header span:last-child{
-    font-size: 1.2em;
-    font-weight: bolder;
-}
-
-.author-header{
-    border: 1px solid#2b2b30;
-    border-bottom-color: rgb(43, 43, 48);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom: none;
-    position: relative;
-    padding-top: 24px;
-    padding-left: 25px;
-    padding-bottom: 25px;
-    background:rgba(19,19,21,.9);
-}
-
-.author-body{
-    padding: 20px 0px;
-}
-
 @media (max-width: 575px) {
     .logo-jumbotron {
         max-width: 250px;
@@ -968,9 +641,6 @@ main section:last-child{
     }
     .sidenav{
         margin-top: 46px;
-    }
-    .vertical-center{
-
     }
 }
 
@@ -1025,3 +695,6 @@ main section:last-child{
         max-width: 250px;
     }
 }
+/* */
+
+

@@ -12,45 +12,81 @@
 
 global $wp_query;
 
+define('ROLE_MAP', [
+	'administrator' => 'Administrador',
+	'author' => 'Autor',
+	'contributor' => 'Contribuidor',
+	'editor' => 'Editor',
+	'subscriber' => 'Assinante'
+]);
+
 $context          = Timber::context();
 $context['posts'] = new Timber\PostQuery();
 $posts = [];
-$user = [];
-if (isset($wp_query->query_vars['author'])) {
-	$author = new Timber\User($wp_query->query_vars['author']);
-	$roles = '';
-	foreach ($author->roles as $role) {
-		$roles = $roles . $role . ', ';
+
+/**
+ * Returns extra info about a given user
+ *
+ * @param [type] $person
+ * @return array
+ */
+
+function getUserInfo($person)
+{
+	$user = [];
+	foreach (['discord', 'twitter', 'facebook'] as $socialMedia) {
+		$media = get_user_meta($person->ID, $socialMedia);
+		if (isset($media[0]) && !empty($media[0])) {
+			$user[$socialMedia] = $media[0];
+		}
 	}
-	$roles = rtrim($roles, ', ');
-	$user = [
-		'name' => $author->name,
-		'avatar' => get_avatar_url($author->ID),
-		'role' => $roles,
-	];
-	if ($author->discord != '') {
-		$user['discord'] =  $author->discord;
-	}
-	if ($author->facebook != '') {
-		$user['facebook'] = $author->facebook;
-	}
-	if ($author->twitter != '') {
-		$user['twitter'] = $author->twitter;
-	}
-	if ($author->live != '') {
-		$user['live'] = $author->live;
-		if (strpos($author->live, 'twitch') != '') {
+
+	$live = get_user_meta($person->ID, 'live');
+
+	if (isset($live[0]) && !empty($live[0])) {
+		$user['live'] = $live[0];
+		if (strpos($live[0], 'twitch') != '') {
 			$user['plataform_live'] = 'twitch';
-		} else if (strpos($author->live, 'youtube') != '') {
+		} else if (strpos($live[0], 'youtube') != '') {
 			$user['plataform_live'] = 'youtube';
-		} else if (strpos($author->live, 'facebook') != '') {
+		} else if (strpos($live[0], 'facebook') != '') {
 			$user['plataform_live'] = 'facebook';
 		} else {
 			$user['plataform_live'] = 'other';
 		}
 	}
 
-	foreach ($context['posts'] as $post) {
+	return $user;
+}
+
+/**
+ * Returns all roles as text
+ *
+ * @param [type] $user
+ * @return string
+ */
+
+
+function getUserRolesAsText($user)
+{
+	$roles = [];
+	foreach ($user->roles as $role) {
+		$roles[] = ROLE_MAP[$role];
+	}
+
+	return implode(", ", $roles);
+}
+
+/**
+ * Returns post of type 'post' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return string
+ */
+
+function getPostsAuthor($query)
+{
+	foreach ($query as $post) {
 		$data = get_fields($post->ID);
 		$public = [
 			'post_title' => $post->post_title,
@@ -65,8 +101,22 @@ if (isset($wp_query->query_vars['author'])) {
 		];
 		$posts[] = array_merge($public);
 	}
-	$context['posts'] = $posts;
-	$context['author'] = $user;
+	return $posts;
+}
+
+if (isset($wp_query->query_vars['author'])) {
+	$author = new Timber\User($wp_query->query_vars['author']);
+	$person = get_userdata($author->ID);
+	$user = [
+		'name' => $person->display_name,
+		'avatar' => get_avatar_url($person->ID),
+		'role' => getUserRolesAsText($person)
+	];
+
+	$extraInfo = getUserInfo($person);
+
+	$context['author'] = array_merge($user, $extraInfo);
+	$context['posts'] = getPostsAuthor($context['posts']);
 }
 
 Timber::render(array('author.twig', 'archive.twig'), $context);

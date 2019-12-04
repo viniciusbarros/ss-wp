@@ -18,26 +18,26 @@
 $templates = array('archive.twig', 'index.twig');
 $context = Timber::context();
 $timber_post = new Timber\Post();
+
 // Pegar o parametro do URL
-
 $archive = str_replace('/', '', $_SERVER['REQUEST_URI']);
-$posts = [];
 
-// Verifica o post type
-if ($timber_post->post_type == 'cosmos') {
-	// Caso seja 'cosmos', buscar todos os posts com post type cosmos
+/**
+ * Returns all posts of type 'cosmos' with custom fields and organized (only needed)
+ *
+ * @return array
+ */
 
+function getArchiveCosmos()
+{
 	$cosmos = [];
 	$args = array(
 		'post_type' => 'cosmos',
 		'post_satus' => 'publish',
 		'numberposts' => -1
 	);
-	// Buscar todos os posts
-	$context['cosmos'] = Timber::get_posts($args);
-
-	// Filtrar os campos dos posts buscados
-	foreach ($context['cosmos'] as $cosmo) {
+	$cosmos_posts = Timber::get_posts($args);
+	foreach ($cosmos_posts as $cosmo) {
 		$data = get_fields($cosmo->ID);
 		$info = [
 			'cosmo_name' => $data["cosmo_name"],
@@ -53,20 +53,27 @@ if ($timber_post->post_type == 'cosmos') {
 			$info['cosmo_status2_tipo'] = $data['cosmo_status2']['tipo'];
 			$info['cosmo_status2_max'] = $data['cosmo_status2']['max'];
 		}
-		$posts[] = array_merge($info);
-	};
-} else if ($timber_post->post_type == 'characters') {
-	// Caso seja 'characters', buscar todos os posts com post type characters
+		$cosmos[] = array_merge($info);
+	}
+	return $cosmos;
+}
+
+/**
+ * Returns all posts of type 'cosmos' with custom fields and organized (only needed)
+ *
+ * @return array
+ */
+
+function getArchiveCharacters()
+{
+	$characters = [];
 	$args = array(
 		'post_type' => 'characters',
 		'post_satus' => 'publish',
 		'numberposts' => -1
 	);
-	// Buscar todos os posts
-	$context['post'] = Timber::get_posts($args);
-
-	// Filtrar os campos dos posts buscados
-	foreach ($context['post'] as $saint) {
+	$characters_posts = Timber::get_posts($args);
+	foreach ($characters_posts as $saint) {
 		$data = get_fields($saint->ID);
 		$info = [
 			'character_name' => $data["character_name"],
@@ -75,17 +82,42 @@ if ($timber_post->post_type == 'cosmos') {
 			'character_tier' => $data["character_tier"],
 			'character_link' => get_permalink($saint->ID),
 		];
-		$posts[] = array_merge($info);
+		$characters[] = array_merge($info);
 	};
-} else {
-	// Caso não seja nenhum dos outros, verificar o parametro passado
+	return $characters;
+}
+
+/**
+ * Returns category of archives
+ *
+ * @param [type] $archive
+ * @return array
+ */
+
+function getArchiveCategoryPost($archive)
+{
 	if ($archive != 'news') {
-		// Se o parametro não for 'news', buscar a subcategoria
 		$category = get_the_category();
-		//Verificar se a subcategoria está vázia
 		if (!empty($category)) {
-			//Caso não esteja, buscar todas as publicaçãoes dessa subcategoria
-			$context['categorypage'] = $category[0]->name;
+			return $category[0]->name;
+		}
+	} else {
+		return 'Publicações';
+	}
+}
+
+/**
+ * Returns post of category or subcategory given
+ * @param [type] $query
+ * @return array
+ */
+
+function getArchivePosts($archive)
+{
+	$posts = [];
+	if ($archive != 'news') {
+		$category = get_the_category();
+		if (!empty($category)) {
 			$args = array(
 				'post_type' => 'post',
 				'post_satus' => 'publish',
@@ -95,8 +127,6 @@ if ($timber_post->post_type == 'cosmos') {
 			);
 		}
 	} else {
-		// Se o parametro for 'news', buscar todas as publicações	
-		$context['categorypage'] = 'Publicações';
 		$args = array(
 			'post_type' => 'post',
 			'post_satus' => 'publish',
@@ -104,11 +134,9 @@ if ($timber_post->post_type == 'cosmos') {
 			'orderby' => 'publish_date',
 		);
 	}
-	// Verificar se a variavel args está vázio
 	if (!empty($args)) {
-		// Caso não esteja, filtrar os campos
 		$context['news'] = new Timber\PostQuery($args);
-		foreach ($context['posts'] as $post) {
+		foreach ($context['news'] as $post) {
 			$data = get_fields($post->ID);
 			$public = [
 				'post_title' => $post->post_title,
@@ -123,8 +151,20 @@ if ($timber_post->post_type == 'cosmos') {
 			$posts[] = array_merge($public);
 		}
 	}
+	return $posts;
 }
 
-$context['posts'] = $posts;
+// Verifica o post type
+if ($timber_post->post_type == 'cosmos') {
+	// Caso seja 'cosmos', buscar todos os posts com post type cosmos
+	$context['posts'] = getArchiveCosmos();
+} else if ($timber_post->post_type == 'characters') {
+	// Caso seja 'characters', buscar todos os posts com post type characters
+	$context['posts'] = getArchiveCharacters();
+} else {
+	// Caso não seja nenhum dos outros, verificar o parametro passado
+	$context['posts'] = getArchivePosts($archive);
+	$context['categorypage'] = getArchiveCategoryPost($archive);
+}
 
 Timber::render(array('archive-' . $timber_post->post_type . '.twig', 'archive.twig'), $context);

@@ -1,5 +1,8 @@
 {% extends "base.twig" %}
-
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ site.theme.link }}//assets/css/index.css" type="text/css" media="screen"/>
+{% endblock %}
 {% block content %}
 
 <section class="news-section section">

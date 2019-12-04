@@ -1,4 +1,8 @@
 {% extends "base.twig" %}
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ site.theme.link }}//assets/css/single.css" type="text/css" media="screen"/>
+{% endblock %}
 
 {% block content %}
 	<section>
@@ -25,16 +29,14 @@
 					</div>
 					<footer class="post-full-footer">
 						<div class="content">
-							<a class="author-card" href='{{post.author.link}}'>
-								<img class="author-profile-image" src="{{post.author.avatar}}" alt="{{post.author.name}}">
+							<a class="author-card" href='{{author.link}}'>
+								<img class="author-profile-image" src="{{author.avatar}}" alt="{{author.name}}">
 								<div class="author-card-content">
 									<h4 class="author-card-name">
-										<span>{{post.author.name}}</span>
+										<span>{{author.name}}</span>
 									</h4>
 									<p>
-										{% for role in post.author.roles %}
-											{{role}}
-										{% endfor %}
+										{{author.roles}}
 									</p>
 								</div>
 							</a>

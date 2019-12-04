@@ -15,7 +15,6 @@
  */
 
 $context          = Timber::context();
-$context['posts'] = new Timber\PostQuery();
 
 define('ROLE_MAP', [
 	'administrator' => 'Administrador',
@@ -25,14 +24,57 @@ define('ROLE_MAP', [
 	'subscriber' => 'Assinante'
 ]);
 
-// Arrays para cada postagem
-$publics = [];
-$events = [];
-$activitys = [];
-$banners = [];
-$atts = [];
-$characters = [];
-$team = [];
+// Buscar postagens para aba de ultimos personagens lançados
+$context['character'] = Timber::get_posts([
+	'post_type' => 'characters',
+	'post_satus' => 'publish',
+	'numberposts' => 4,
+	'orderby' => 'publish_date',
+]);
+// Buscar todas as novidades recentes
+$context['public'] = Timber::get_posts([
+	'post_type' => 'post',
+	'post_satus' => 'publish',
+	'numberposts' => 3,
+	'orderby' => 'publish_date',
+]);
+// Buscar todas os eventos recentes
+$context['event'] = Timber::get_posts([
+	'post_type' => 'post',
+	'post_satus' => 'publish',
+	'numberposts' => 3,
+	'orderby' => 'publish_date',
+	'category_name' => 'event'
+]);
+// Buscar todas as atividades recentes
+$context['activity'] = Timber::get_posts([
+	'post_type' => 'post',
+	'post_satus' => 'publish',
+	'numberposts' => 3,
+	'orderby' => 'publish_date',
+	'category_name' => 'activity'
+]);
+// Buscar todos os banners recentes
+$context['banner'] = Timber::get_posts([
+	'post_type' => 'post',
+	'post_satus' => 'publish',
+	'numberposts' => 3,
+	'orderby' => 'publish_date',
+	'category_name' => 'banner'
+]);
+// Buscar todos as atualizações recentes
+$context['att'] = Timber::get_posts([
+	'post_type' => 'post',
+	'post_satus' => 'publish',
+	'numberposts' => 3,
+	'orderby' => 'publish_date',
+	'category_name' => 'update'
+]);
+// Buscar os membros da equipe
+$context['team'] = get_users([
+	'post_per_page' => 6,
+	'orderby' => 'rand',
+]);
 
 /**
  * Returns extra info about a given user
@@ -40,6 +82,7 @@ $team = [];
  * @param [type] $person
  * @return array
  */
+
 function getUserInfo($person)
 {
 	$user = [];
@@ -74,6 +117,7 @@ function getUserInfo($person)
  * @param [type] $user
  * @return string
  */
+
 function getUserRolesAsText($user)
 {
 	$roles = [];
@@ -84,184 +128,201 @@ function getUserRolesAsText($user)
 	return implode(", ", $roles);
 }
 
+/**
+ * Returns posts of type 'character' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Buscar postagens para aba de ultimos personagens lançados
-$context['character'] = Timber::get_posts([
-	'post_type' => 'characters',
-	'post_satus' => 'publish',
-	'numberposts' => 4,
-	'orderby' => 'publish_date',
-]);
-
-// Filtrar os campos dos posts buscados
-foreach ($context['character'] as $post) {
-	$data = get_fields($post->ID);
-	$saint = [
-		'character_name' => $post->character_name,
-		'character_thumb' => $data['character_thumb']['url'],
-		'character_link' => get_the_permalink($post->ID),
-	];
-	$characters[] = array_merge($saint);
+function getPostsCharacter($query)
+{
+	$characters = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$saint = [
+			'character_name' => $post->character_name,
+			'character_thumb' => $data['character_thumb']['url'],
+			'character_link' => get_the_permalink($post->ID),
+		];
+		$characters[] = array_merge($saint);
+	}
+	return $characters;
 }
 
-// Buscar todas as novidades recentes
-$context['public'] = Timber::get_posts([
-	'post_type' => 'post',
-	'post_satus' => 'publish',
-	'numberposts' => 3,
-	'orderby' => 'publish_date',
-]);
+/**
+ * Returns posts of category 'news' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($context['public'] as $post) {
-	$data = get_fields($post->ID);
-	$public = [
-		'post_title' => $post->post_title,
-		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_author_link' => get_author_posts_url($post->post_author),
-		'post_tag' => get_the_category($post->ID),
-		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-		'post_link' => get_permalink($post->ID),
-	];
-	$publics[] = array_merge($public);
+function getPostsNews($query)
+{
+	$publics = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$public = [
+			'post_title' => $post->post_title,
+			'post_img' => $data["post_thumb"]['url'],
+			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+			'post_author_avatar' => get_avatar_url($post->post_author),
+			'post_author_link' => get_author_posts_url($post->post_author),
+			'post_tag' => get_the_category($post->ID),
+			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+			'post_link' => get_permalink($post->ID),
+		];
+		$publics[] = array_merge($public);
+	}
+	return $publics;
 }
 
-// Buscar todas os eventos recentes
-$context['event'] = Timber::get_posts([
-	'post_type' => 'post',
-	'post_satus' => 'publish',
-	'numberposts' => 3,
-	'orderby' => 'publish_date',
-	'category_name' => 'event'
-]);
+/**
+ * Returns posts of subcategory 'event' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($context['event'] as $post) {
-	$data = get_fields($post->ID);
-	$event = [
-		'post_title' => $post->post_title,
-		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_author_link' => get_author_posts_url($post->post_author),
-		'post_tag' => get_the_category($post->ID),
-		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-		'post_link' => get_permalink($post->ID),
-	];
-	$events[] = array_merge($event);
+function getPostsEvents($query)
+{
+	$events = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$event = [
+			'post_title' => $post->post_title,
+			'post_img' => $data["post_thumb"]['url'],
+			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+			'post_author_avatar' => get_avatar_url($post->post_author),
+			'post_author_link' => get_author_posts_url($post->post_author),
+			'post_tag' => get_the_category($post->ID),
+			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+			'post_link' => get_permalink($post->ID),
+		];
+		$events[] = array_merge($event);
+	}
+	return $events;
 }
 
-// Buscar todas as atividades recentes
-$context['activity'] = Timber::get_posts([
-	'post_type' => 'post',
-	'post_satus' => 'publish',
-	'numberposts' => 3,
-	'orderby' => 'publish_date',
-	'category_name' => 'activity'
-]);
+/**
+ * Returns posts of subcategory 'activity' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($context['activity'] as $post) {
-	$data = get_fields($post->ID);
-	$activity = [
-		'post_title' => $post->post_title,
-		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_author_link' => get_author_posts_url($post->post_author),
-		'post_tag' => get_the_category($post->ID),
-		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-		'post_link' => get_permalink($post->ID),
-	];
-	$activitys[] = array_merge($activity);
+function getPostsActivity($query)
+{
+	$activitys = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$activity = [
+			'post_title' => $post->post_title,
+			'post_img' => $data["post_thumb"]['url'],
+			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+			'post_author_avatar' => get_avatar_url($post->post_author),
+			'post_author_link' => get_author_posts_url($post->post_author),
+			'post_tag' => get_the_category($post->ID),
+			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+			'post_link' => get_permalink($post->ID),
+		];
+		$activitys[] = array_merge($activity);
+	}
+	return $activitys;
 }
 
-// Buscar todos os banners recentes
-$context['banner'] = Timber::get_posts([
-	'post_type' => 'post',
-	'post_satus' => 'publish',
-	'numberposts' => 3,
-	'orderby' => 'publish_date',
-	'category_name' => 'banner'
-]);
+/**
+ * Returns posts of subcategory 'banner' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($context['banner'] as $post) {
-	$data = get_fields($post->ID);
-	$banner = [
-		'post_title' => $post->post_title,
-		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_author_link' => get_author_posts_url($post->post_author),
-		'post_tag' => get_the_category($post->ID),
-		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-		'post_link' => get_permalink($post->ID),
-	];
-	$banners[] = array_merge($banner);
+function getPostsBanner($query)
+{
+	$banners = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$banner = [
+			'post_title' => $post->post_title,
+			'post_img' => $data["post_thumb"]['url'],
+			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+			'post_author_avatar' => get_avatar_url($post->post_author),
+			'post_author_link' => get_author_posts_url($post->post_author),
+			'post_tag' => get_the_category($post->ID),
+			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+			'post_link' => get_permalink($post->ID),
+		];
+		$banners[] = array_merge($banner);
+	}
+	return $banners;
 }
 
-// Buscar todos as atualizações recentes
-$context['atts'] = Timber::get_posts([
-	'post_type' => 'post',
-	'post_satus' => 'publish',
-	'numberposts' => 3,
-	'orderby' => 'publish_date',
-	'category_name' => 'update'
-]);
+/**
+ * Returns posts of subcategory 'att' with custom fields and organized (only needed)
+ *
+ * @param [type] $query
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($context['atts'] as $post) {
-	$data = get_fields($post->ID);
-	$att = [
-		'post_title' => $post->post_title,
-		'post_img' => $data["post_thumb"]['url'],
-		'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-		'post_author_avatar' => get_avatar_url($post->post_author),
-		'post_author_link' => get_author_posts_url($post->post_author),
-		'post_tag' => get_the_category($post->ID),
-		'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-		'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-		'post_link' => get_permalink($post->ID),
-	];
-	$atts[] = array_merge($att);
+function getPostsAtt($query)
+{
+	$atts = [];
+	foreach ($query as $post) {
+		$data = get_fields($post->ID);
+		$att = [
+			'post_title' => $post->post_title,
+			'post_img' => $data["post_thumb"]['url'],
+			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+			'post_author_avatar' => get_avatar_url($post->post_author),
+			'post_author_link' => get_author_posts_url($post->post_author),
+			'post_tag' => get_the_category($post->ID),
+			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+			'post_link' => get_permalink($post->ID),
+		];
+		$atts[] = array_merge($att);
+	}
+	return $atts;
 }
 
-// Buscar os membros da equipe
-$users = get_users([
-	'post_per_page' => 6,
-	'orderby' => 'rand',
-]);
+/**
+ * Returns extra info about team members
+ *
+ * @param [type] $users
+ * @return array
+ */
 
-// Filtrar os campos dos posts buscados
-foreach ($users as $user) {
-	$person = get_userdata($user->ID);
-	$user = [
-		'name' => $person->name,
-		'avatar' => get_avatar_url($person->ID),
-		'role' => getUserRolesAsText($person)
-	];
+function getTeamMembers($users)
+{
+	$team = [];
+	foreach ($users as $user) {
+		$person = get_userdata($user->ID);
+		$user = [
+			'name' => $person->name,
+			'avatar' => get_avatar_url($person->ID),
+			'role' => getUserRolesAsText($person),
+		];
 
-	$extraInfo = getUserInfo($person);
+		$extraInfo = getUserInfo($person);
 
-	$team[] = array_merge($user, $extraInfo);
+		$team[] = array_merge($user, $extraInfo);
+	}
+	return $team;
 }
 
 // Passando os arrays para dentro do context
-$context['author'] = $team;
-$context['public'] = $publics;
-$context['event'] = $events;
-$context['activity'] = $activitys;
-$context['banner'] = $banners;
-$context['att'] = $atts;
-$context['character'] = $characters;
-$context['team'] = $team;
+$context['public'] = getPostsNews($context['public']);
+$context['event'] = getPostsEvents($context['event']);
+$context['activity'] = getPostsActivity($context['activity']);
+$context['banner'] = getPostsBanner($context['banner']);
+$context['att'] = getPostsAtt($context['att']);
+$context['character'] = getPostsCharacter($context['character']);
+$context['team'] = getTeamMembers($context['team']);
 
 $templates = array('index.twig');
 Timber::render($templates, $context);

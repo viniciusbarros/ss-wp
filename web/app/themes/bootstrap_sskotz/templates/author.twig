@@ -1,4 +1,9 @@
 {% extends "base.twig" %}
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ site.theme.link }}//assets/css/author.css" type="text/css" media="screen"/>
+{% endblock %}
+
 
 {% block content %}
 	<section class="author-section section">
@@ -47,7 +52,6 @@
 						</div>
 					</div>
 				</div>
-				{% for post in posts %}{% endfor %}
 			</div>
 			<div class="row author-body px-2">
 				<div class="col-12 mb-4">

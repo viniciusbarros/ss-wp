@@ -1,0 +1,18 @@
+/* Index page */
+
+.guide-block {
+    transition: all .15s ease-in-out;
+    max-width: 250px;
+}
+.guide-block a {
+    color: white;
+}
+.guide-block a:hover{
+    color: #fff;
+}
+.guide-block:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+}
+
+/* */
