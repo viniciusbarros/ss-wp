@@ -166,6 +166,15 @@ class StarterSite extends Timber\Site
 		return $twig;
 	}
 }
+
+function cpt_archive_posts_per_page($query)
+{
+	if (($query->is_main_query() && !is_admin() && is_post_type_archive('cosmos') || is_post_type_archive('chracters'))) {
+		$query->set('posts_per_page', '-1');
+	}
+}
+add_action('pre_get_posts', 'cpt_archive_posts_per_page');
+
 add_action('show_user_profile', 'extra_user_profile_fields');
 add_action('edit_user_profile', 'extra_user_profile_fields');
 

@@ -20,7 +20,9 @@ $context = Timber::context();
 $timber_post = new Timber\Post();
 
 // Pegar o parametro do URL
-$archive = str_replace('/', '', $_SERVER['REQUEST_URI']);
+$archive = $wp_query->get_queried_object();
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
 
 /**
  * Returns all posts of type 'cosmos' with custom fields and organized (only needed)
@@ -96,7 +98,7 @@ function getArchiveCharacters()
 
 function getArchiveCategoryPost($archive)
 {
-	if ($archive != 'news') {
+	if ($archive->slug != 'news') {
 		$category = get_the_category();
 		if (!empty($category)) {
 			return $category[0]->name;
@@ -112,26 +114,28 @@ function getArchiveCategoryPost($archive)
  * @return array
  */
 
-function getArchivePosts($archive)
+function getArchivePosts($archive, $paged)
 {
 	$posts = [];
-	if ($archive != 'news') {
+	if ($archive->slug != 'news') {
 		$category = get_the_category();
 		if (!empty($category)) {
 			$args = array(
 				'post_type' => 'post',
 				'post_satus' => 'publish',
-				'posts_per_page' => 15,
 				'orderby' => 'publish_date',
 				'cat' => $category[0]->cat_ID,
+				'paged' => $paged,
+				'post_per_page' => 9
 			);
 		}
 	} else {
 		$args = array(
 			'post_type' => 'post',
 			'post_satus' => 'publish',
-			'posts_per_page' => 15,
 			'orderby' => 'publish_date',
+			'paged' => $paged,
+			'post_per_page' => 9
 		);
 	}
 	if (!empty($args)) {
@@ -151,6 +155,7 @@ function getArchivePosts($archive)
 			$posts[] = array_merge($public);
 		}
 	}
+	$posts['pagination'] = Timber::get_pagination();
 	return $posts;
 }
 
@@ -163,7 +168,7 @@ if ($timber_post->post_type == 'cosmos') {
 	$context['posts'] = getArchiveCharacters();
 } else {
 	// Caso não seja nenhum dos outros, verificar o parametro passado
-	$context['posts'] = getArchivePosts($archive);
+	$context['posts'] = getArchivePosts($archive, $paged);
 	$context['categorypage'] = getArchiveCategoryPost($archive);
 }
 

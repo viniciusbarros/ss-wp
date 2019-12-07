@@ -36,62 +36,71 @@
 					</h2>
 				</div>
 				{% for post in posts %}
-					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4 mx-auto">
-						<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
-							<a class="post-card-image-link" href="{{ post.post_link }}">
-								<img src="{{ post.post_img }}" class="post-card-image">
-							</a>
-							<div class="post-card-content">
-								<a class="post-card-content-link" href="{{ post.post_link }}">
-									<header class="post-card-header">
-										<span class="post-card-tags">
-											{% for category in post.post_category %}
-												{{category.name}}
-											{% endfor %}
-										</span>
-										<h2 class="post-card-title">{{ post.post_title }}</h2>
-									</header>
-									<section class="post-card-excerpt">
-										<p>{{ post.post_desc }}</p>
-									</section>
+					{% if post.current is not defined %}
+						<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex mb-4">
+							<article class="post-card d-flex mx-auto post-card-animation post-card-border-animation">
+								<a class="post-card-image-link" href="{{ post.post_link }}">
+									<img src="{{ post.post_img }}" class="post-card-image">
 								</a>
-								<footer class="post-card-meta">
-									<ul class="author-list">
-										<li class="author-list-item">
-											<a href="#" class="static-avatar">
-												<img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
-											</a>
-										</li>
-									</ul>
-									<span class="reading-time">{{ post.post_date }}</span>
-								</footer>
-							</div>
-						</article>
-					</div>
+								<div class="post-card-content">
+									<a class="post-card-content-link" href="{{ post.post_link }}">
+										<header class="post-card-header">
+											<span class="post-card-tags">
+												{% for category in post.post_category %}
+													{{category.name}}
+												{% endfor %}
+											</span>
+											<h2 class="post-card-title">{{ post.post_title }}</h2>
+										</header>
+										<section class="post-card-excerpt">
+											<p>{{ post.post_desc }}</p>
+										</section>
+									</a>
+									<footer class="post-card-meta">
+										<ul class="author-list">
+											<li class="author-list-item">
+												<a href="#" class="static-avatar">
+													<img class="author-profile-image" src="{{ post.post_author_avatar }}" alt="{{ post.post_author_name }}">
+												</a>
+											</li>
+										</ul>
+										<span class="reading-time">{{ post.post_date }}</span>
+									</footer>
+								</div>
+							</article>
+						</div>
+					{% endif %}
 				{% endfor %}
 			</div>
-			<div class="row">
-				<div class="tool-pagination">
-					{% if posts.pagination.prev %}
-						<a href="{{posts.pagination.prev.link}}" class="prev {{posts.pagination.prev.link|length ? '' : 'invisible'}}">Prev</a>
-					{% endif %}
-					<ul class="pages">
-						{% for page in posts.pagination.pages %}
-							<li>
-								{% if page.link %}
-									<a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
-								{% else %}
-									<span class="{{page.class}}">{{page.title}}</span>
+			{% if posts.pagination.total > 1 %}
+				<div class="row justify-content-center">
+					<nav>
+						<div class="pagination-container wow zoomIn mar-b-1x" data-wow-duration="0.5s">
+							<ul class="pagination">
+								{% if posts.pagination.prev %}
+									<li class="pagination-item--wide first m-auto">
+										<a class="pagination-link--wide first" href="{{posts.pagination.prev.link}}">
+											<i class="fas fa-chevron-left"></i>
+										</a>
+									</li>
 								{% endif %}
-							</li>
-						{% endfor %}
-					</ul>
-					{% if posts.pagination.next %}
-						<a href="{{posts.pagination.next.link}}" class="next {{posts.pagination.next.link|length ? '' : 'invisible'}}">Next</a>
-					{% endif %}
+								{% for page in posts.pagination.pages %}
+									<li class="pagination-item {% if page.title == 1 %}first-number{% endif %}{% if page.current == 1 %} is-active{% endif %}">
+										<a class="pagination-link" href="{{page.link}}">{{page.title}}</a>
+									</li>
+								{% endfor %}
+								{% if posts.pagination.next %}
+									<li class="pagination-item--wide last m-auto">
+										<a class="pagination-link--wide last" href="{{posts.pagination.next.link}}">
+											<i class="fas fa-chevron-right"></i>
+										</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</section>
-
 {% endblock %}
