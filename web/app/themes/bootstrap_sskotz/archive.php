@@ -22,8 +22,6 @@ $timber_post = new Timber\Post();
 // Pegar o parametro do URL
 $archive = $wp_query->get_queried_object();
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-
 /**
  * Returns all posts of type 'cosmos' with custom fields and organized (only needed)
  *
@@ -99,12 +97,30 @@ function getArchiveCharacters()
 function getArchiveCategoryPost($archive)
 {
 	if ($archive->slug != 'news') {
-		$category = get_the_category();
-		if (!empty($category)) {
-			return $category[0]->name;
+		if ($archive->slug != 'guides') {
+			$category = get_the_category();
+			if (!empty($category)) {
+				return $category[0]->name;
+			}
+		} else {
+			return 'Todos os guias';
 		}
 	} else {
 		return 'Publicações';
+	}
+}
+
+/**
+ * Returns parent of category
+ *
+ * @param [type] $archive
+ * @return array
+ */
+
+function GetArchiveCategoryParent($category)
+{
+	if ($category->category_parent > 0) {
+		return get_category($category->category_parent);
 	}
 }
 
@@ -117,23 +133,50 @@ function getArchiveCategoryPost($archive)
 function getArchivePosts($archive, $paged)
 {
 	$posts = [];
+	$categoryguidesParents = get_categories(
+		array('parent' => get_category_by_slug('guides')->cat_ID)
+	);
+	$categorynewsParents = get_categories(
+		array('parent' => get_category_by_slug('news')->cat_ID)
+	);
+	$categoryIgnore = [];
+
 	if ($archive->slug != 'news') {
-		$category = get_the_category();
-		if (!empty($category)) {
+		if ($archive->slug != 'guides') {
+			$category = get_the_category();
+			if (!empty($category)) {
+				$args = array(
+					'post_type' => 'post',
+					'post_satus' => 'publish',
+					'orderby' => 'publish_date',
+					'cat' => $category[0]->cat_ID,
+					'paged' => $paged,
+					'post_per_page' => 9
+				);
+			}
+		} else {
+			foreach ($categorynewsParents as $parent) {
+				array_push($categoryIgnore, $parent->cat_ID);
+			}
 			$args = array(
 				'post_type' => 'post',
 				'post_satus' => 'publish',
 				'orderby' => 'publish_date',
-				'cat' => $category[0]->cat_ID,
+				'category__not_in' => $categoryIgnore,
 				'paged' => $paged,
 				'post_per_page' => 9
 			);
 		}
 	} else {
+		foreach ($categoryguidesParents as $parent) {
+			array_push($categoryIgnore, $parent->cat_ID);
+		}
+
 		$args = array(
 			'post_type' => 'post',
 			'post_satus' => 'publish',
 			'orderby' => 'publish_date',
+			'category__not_in' => $categoryIgnore,
 			'paged' => $paged,
 			'post_per_page' => 9
 		);
@@ -147,6 +190,7 @@ function getArchivePosts($archive, $paged)
 				'post_img' => $data["post_thumb"]['url'],
 				'post_author_name' => get_the_author_meta($post->post_author),
 				'post_author_avatar' => get_avatar_url($post->post_author),
+				'post_author_link' => get_author_posts_url($post->post_author),
 				'post_category' => get_the_category($post->ID),
 				'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
 				'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
@@ -163,13 +207,21 @@ function getArchivePosts($archive, $paged)
 if ($timber_post->post_type == 'cosmos') {
 	// Caso seja 'cosmos', buscar todos os posts com post type cosmos
 	$context['posts'] = getArchiveCosmos();
+	$render = array('archive-cosmos.twig', 'archive.twig');
 } else if ($timber_post->post_type == 'characters') {
 	// Caso seja 'characters', buscar todos os posts com post type characters
 	$context['posts'] = getArchiveCharacters();
+	$render = array('archive-characters.twig', 'archive.twig');
 } else {
 	// Caso não seja nenhum dos outros, verificar o parametro passado
 	$context['posts'] = getArchivePosts($archive, $paged);
 	$context['categorypage'] = getArchiveCategoryPost($archive);
+	$category = GetArchiveCategoryParent($archive);
+	if (!empty($category)) {
+		$render = array('archive-' . $category->slug . '.twig', 'archive.twig');
+	} else {
+		$render = array('archive-' . $archive->slug . '.twig', 'archive.twig');
+	}
 }
 
-Timber::render(array('archive-' . $timber_post->post_type . '.twig', 'archive.twig'), $context);
+Timber::render($render, $context);

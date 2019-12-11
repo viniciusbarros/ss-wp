@@ -13,7 +13,19 @@
 						<time class="post-full-meta-date" datetime="{{post.post_date_gmt}}">{{ post.date }}</time>
 						<span class="date-divider">/</span>
 						{% for cat in cats %}
-							<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% if cat.slug == 'banner' %}
+								<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% elseif cat.slug == 'event' %}
+								<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% elseif cat.slug == 'activity' %}
+								<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% elseif cat.slug == 'update' %}
+								<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% elseif cat.slug == 'news' %}
+								<a href="{{site.url}}/news/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% else %}
+								<a href="{{site.url}}/guides/{{cat.slug}}" class="post-tag">{{cat.name}}</a>
+							{% endif %}
 						{% endfor %}
 					</div>
 					<h1 class="post-full-title">{{post.title}}</h1>

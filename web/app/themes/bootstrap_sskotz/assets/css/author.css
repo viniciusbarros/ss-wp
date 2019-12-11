@@ -1,10 +1,6 @@
 /* Author page */
 .author-header{
-    border: 1px solid#2b2b30;
-    border-bottom-color: rgb(43, 43, 48);
-    border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom: none;
     position: relative;
     padding-top: 24px;
     padding-left: 25px;

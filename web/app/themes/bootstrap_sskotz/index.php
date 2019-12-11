@@ -24,6 +24,11 @@ define('ROLE_MAP', [
 	'subscriber' => 'Assinante'
 ]);
 
+$guide_cosmo =  get_category_by_slug('cosmos');
+$guide_dg =  get_category_by_slug('dungeons');
+$guide_tips =  get_category_by_slug('tips');
+$guide_others =  get_category_by_slug('others');
+
 // Buscar postagens para aba de ultimos personagens lançados
 $context['character'] = Timber::get_posts([
 	'post_type' => 'characters',
@@ -37,6 +42,7 @@ $context['public'] = Timber::get_posts([
 	'post_satus' => 'publish',
 	'numberposts' => 3,
 	'orderby' => 'publish_date',
+	'category__not_in' => array($guide_cosmo->cat_ID, $guide_dg->cat_ID, $guide_tips->cat_ID, $guide_others->cat_ID)
 ]);
 // Buscar todas os eventos recentes
 $context['event'] = Timber::get_posts([

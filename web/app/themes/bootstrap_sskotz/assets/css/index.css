@@ -1,18 +1,29 @@
 /* Index page */
 
 .guide-block {
-    transition: all .15s ease-in-out;
+    transition: all .5s ease-in-out;
     max-width: 250px;
 }
 .guide-block a {
     color: white;
+    transition: all .5s ease-in-out;
 }
+
+.guide-block a img{
+    border-radius: 100%;
+    transition: all .5s ease-in-out;
+}
+
 .guide-block a:hover{
-    color: #fff;
+    color: #ffb320;
+    transform: scale(1.06);
+    -webkit-transform: scale(1.06);
 }
-.guide-block:hover {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
+
+.guide-block a img:hover{
+    border: 2px solid #ffb320;
+    transform: scale(1.06);
+    -webkit-transform: scale(1.06);
 }
 
 /* */
