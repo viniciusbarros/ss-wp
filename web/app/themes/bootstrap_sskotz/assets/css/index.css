@@ -2,7 +2,6 @@
 
 .guide-block {
     transition: all .5s ease-in-out;
-    max-width: 250px;
 }
 .guide-block a {
     color: white;
