@@ -312,7 +312,7 @@
                         voluptatem.</p>
                 </div>
             </div>
-            <div class="row w-100">
+            <div class="row w-100 justify-content-center">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center mb-3 guide-block d-flex">
                     <article class="guide-block m-auto d-flex">
                         <a href="{{site.url}}/guides/cosmos" class="text-decoration-none">
@@ -388,7 +388,10 @@
                             <li class="list-inline-item"><a href="{{member.twitter}}" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
                             </li>
                             {% endif %}
-                            {% if member.live is not null %}
+                            {% if member.instagram != "" %}
+                            <li class="list-inline-item"><a href="{{member.instagram}}" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            {% endif %}                            {% if member.live is not null %}
                             <li class="list-inline-item"><a href="{{member.live}}" target="_blank" class="social-link"><i class="
                                 {% if member.plataform_live == 'twitch' %}fab fa-twitch{% elseif member.plataform_live == 'youtube' %}fab fa-youtube{% elseif member.plataform_live == 'facebook' %}fa-facebook-f{% else %}fa fa-headset {% endif %}
                                 "></i></a>

@@ -417,10 +417,11 @@ header {
     border: 1px solid #ffb320;
 }
 
-footer{
+.sticky-footer{
     background: #1e1e21 !important;
+    border-top: 1px solid#ffb320;
+    position: relative;
 }
-
 .divider{
     position: relative;
     margin: 30px 0;

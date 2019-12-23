@@ -92,7 +92,7 @@ $context['team'] = get_users([
 function getUserInfo($person)
 {
 	$user = [];
-	foreach (['discord', 'twitter', 'facebook'] as $socialMedia) {
+	foreach (['discord', 'twitter', 'facebook', 'instagram'] as $socialMedia) {
 		$media = get_user_meta($person->ID, $socialMedia);
 		if (isset($media[0]) && !empty($media[0])) {
 			$user[$socialMedia] = $media[0];
