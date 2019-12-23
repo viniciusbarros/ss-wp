@@ -40,7 +40,9 @@
     "wpackagist-plugin/advanced-custom-fields": "^5.8",
     "wpackagist-plugin/classic-editor": "^1.5",
     "wpackagist-plugin/custom-post-type-ui": "^1.6",
-    "wpackagist-plugin/timber-library": "^1.13"
+    "wpackagist-plugin/timber-library": "^1.13",
+	"wpackagist-plugin/wp-avatar":"1.0.0",
+	"wpackagist-plugin/remove-category-url":"1.1.5"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4.2",
