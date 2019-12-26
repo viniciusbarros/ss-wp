@@ -77,17 +77,11 @@ function getPostCharacter($query)
 		'character_name' => $post['character_name'],
 		'character_rarity' => $post['character_rarity'],
 		'character_pv' => $post['character_pv'],
-		'character_pv_rank' => $post['character_pv_rank'],
 		'character_atq_f' => $post['character_atq_f'],
-		'character_atq_f_rank' => $post['character_atq_f_rank'],
 		'character_atq_c' => $post['character_atq_c'],
-		'character_atq_c_rank' => $post['character_atq_c_rank'],
 		'character_def_f' => $post['character_def_f'],
-		'character_def_f_rank' => $post['character_def_f_rank'],
 		'character_def_c' => $post['character_def_c'],
-		'character_def_c_rank' => $post['character_def_c_rank'],
 		'character_speed' => $post['character_speed'],
-		'character_speed_rank' => $post['character_speed_rank'],
 		'character_avatar' => $post['character_avatar'],
 	];
 	$count = 0;

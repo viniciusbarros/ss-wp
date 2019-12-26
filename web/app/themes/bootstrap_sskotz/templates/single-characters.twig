@@ -83,14 +83,14 @@
 											<img src="{{ site.theme.link }}/assets/images/pv_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_pv_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_pv_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_pv_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_pv_rank == 'C' %}
+											{% if post.character_pv < 12486 %}
 												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_pv >= 12486 and post.character_pv < 13650 %}
+												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_pv >= 13650 and post.character_pv < 16120 %}
+												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_pv >= 16120 %}
+												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
@@ -103,14 +103,14 @@
 											<img src="{{ site.theme.link }}/assets/images/atqf_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_atq_f_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_atq_f_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_atq_f_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_atq_f_rank == 'C' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% if post.character_atq_f < 2057 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_atq_f >= 2057 and post.character_atq_f < 2631 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_atq_f >= 2631 and post.character_atq_f < 2818 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_atq_f >= 2818 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_s.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
@@ -125,14 +125,14 @@
 											<img src="{{ site.theme.link }}/assets/images/atqc_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_atq_c_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_atq_c_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_atq_c_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_atq_c_rank == 'C' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% if post.character_atq_c < 2079 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_atq_c >= 2079 and post.character_atq_c < 2420 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_atq_c >= 2420 and post.character_atq_c < 2728 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_atq_c >= 2728 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_s.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
@@ -145,20 +145,18 @@
 											<img src="{{ site.theme.link }}/assets/images/deff_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_def_f_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_def_f_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_def_f_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_def_f_rank == 'C' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% if post.character_def_f < 434 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_def_f >= 434 and post.character_def_f < 498 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_def_f >= 498 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_a.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
 											Defesa física
 										</div>
-										<div class="status d-inline-block">{{ post.character_def_c }}</div>
+										<div class="status d-inline-block">{{ post.character_def_f }}</div>
 									</div>
 								</div>
 								<div class="row status-block">
@@ -167,34 +165,34 @@
 											<img src="{{ site.theme.link }}/assets/images/defc_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_def_c_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_def_c_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_def_c_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_def_c_rank == 'C' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% if post.character_def_c < 434 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_def_c >= 434 and post.character_def_c < 486 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_def_c >= 486 and post.character_def_c < 533 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_def_c >= 533 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_s.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
 											Defesa cósmica
 										</div>
-										<div class="status d-inline-block">{{ post.character_speed }}</div>
+										<div class="status d-inline-block">{{ post.character_def_c }}</div>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-white">
 										<div class="icon-status d-inline-block">
 											<img src="{{ site.theme.link }}/assets/images/speed_icon.png">
 										</div>
 										<div class="rank-status d-inline-block">
-											{% if post.character_speed_rank == 'S' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_s.png">
-											{% elseif post.character_speed_rank == 'A' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_a.png">
-											{% elseif post.character_speed_rank == 'B' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_b.png">
-											{% elseif post.character_speed_rank == 'C' %}
-												<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% if post.character_speed < 162 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_c.png">
+											{% elseif post.character_speed >= 162 and post.character_speed < 228 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_b.png">
+											{% elseif post.character_speed >= 228 and post.character_speed < 351 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_a.png">
+											{% elseif post.character_speed >= 351 %}
+											<img src="{{ site.theme.link }}/assets/images/rank_s.png">
 											{% endif %}
 										</div>
 										<div class="type-status d-inline-block">
@@ -211,8 +209,8 @@
 								{% for skill in post.skills %}
 									<div class="skills py-4 mb-3">
 										<div class="skill-up">
-											Recomendação de level:
-											{{ skill.skill_up }}
+											<span>Level recomendado:
+											{{ skill.skill_up }}</span>
 										</div>
 										<div class="row">
 											<div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-inline-block">
