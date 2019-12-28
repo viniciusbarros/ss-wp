@@ -208,10 +208,6 @@
 							<div class="row">
 								{% for skill in post.skills %}
 									<div class="skills py-4 mb-3">
-										<div class="skill-up">
-											<span>Level recomendado:
-											{{ skill.skill_up }}</span>
-										</div>
 										<div class="row">
 											<div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-inline-block">
 												<div class="skill-group text-center mx-auto" style="width:110px;position:relative">
@@ -232,22 +228,39 @@
 												</div>
 											</div>
 											<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 d-inline-block py-3">
-												<div class="vertical-center">
+												<div class="vertical-center m-auto">
 													<div class="col-12">
 														<h5 class="text-white text-md-left text-center">{{ skill.name }}</h5>
+													</div>
+													<div class="col-12">
+														<div class="skill-up">
+															<strong>Level recomendado {{skill.skill_up}}/
+																{% if skill.lv1 is empty %}
+																	1
+																{% elseif skill.lv2 is empty %}
+																	2
+																{% elseif skill.lv3 is empty %}
+																	3
+																{% elseif skill.lv4 is empty %}
+																	4
+																{% elseif skill.lv5 is empty %}
+																	5
+																{% endif %}
+															</strong>
+														</div>
 													</div>
 													<div class="col-12 text-md-left text-center">
 														{% for type in skill.type %}
 															{% if type == 'Passiva' %}
-																<div class="type-passive w-auto px-2 d-inline-block mb-1">
+																<div class="type-passive w-auto px-2 d-inline-block mb-1 m-auto">
 																	{{ type }}
 																</div>
 															{% elseif type == 'Ataque básico' %}
-																<div class="type-atqb w-auto px-2 d-inline-block mb-1">
+																<div class="type-atqb w-auto px-2 d-inline-block mb-1 m-auto">
 																	{{ type }}
 																</div>
 															{% else %}
-																<div class="type-skill w-auto px-2 d-inline-block mb-1">
+																<div class="type-skill w-auto px-2 d-inline-block mb-1 m-auto">
 																	{{ type }}
 																</div>
 															{% endif %}
