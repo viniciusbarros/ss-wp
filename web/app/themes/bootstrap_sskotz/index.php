@@ -313,7 +313,7 @@ function getTeamMembers($users)
 	foreach ($users as $user) {
 		$person = get_userdata($user->ID);
 		$user = [
-			'name' => $person->name,
+			'name' => $person->display_name,
 			'avatar' => get_avatar_url($person->ID),
 			'role' => getUserRolesAsText($person),
 		];
