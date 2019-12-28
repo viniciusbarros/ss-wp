@@ -46,7 +46,7 @@
     "wpackagist-plugin/radio-buttons-for-taxonomies":"2.0.3",
     "wpackagist-plugin/ssl-insecure-content-fixer":"2.7.2",
     "wpackagist-plugin/wp-mail-smtp-sendgrid-edition":"0.10.2",
-    "wpackagist-plugin/wpfront-user-role-editor":"2.14.3"
+    "wpackagist-plugin/user-role-editor":"4.52.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4.2",
