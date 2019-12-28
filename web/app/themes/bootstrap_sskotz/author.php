@@ -90,22 +90,24 @@ function getUserRolesAsText($user)
 
 function getPostsAuthor($query)
 {
-	foreach ($query as $post) {
-		$data = get_fields($post->ID);
-		$public = [
-			'post_title' => $post->post_title,
-			'post_img' => $data["post_thumb"]['url'],
-			'post_author_name' => get_the_author_meta('display_name', $post->post_author),
-			'post_author_avatar' => get_avatar_url($post->post_author),
-			'post_author_link' => get_author_posts_url($post->post_author),
-			'post_tag' => get_the_category($post->ID),
-			'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
-			'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
-			'post_link' => get_permalink($post->ID),
-		];
-		$posts[] = array_merge($public);
+	if(!empty($query)){
+		foreach ($query as $post) {
+			$data = get_fields($post->ID);
+			$public = [
+				'post_title' => $post->post_title,
+				'post_img' => $data["post_thumb"]['url'],
+				'post_author_name' => get_the_author_meta('display_name', $post->post_author),
+				'post_author_avatar' => get_avatar_url($post->post_author),
+				'post_author_link' => get_author_posts_url($post->post_author),
+				'post_tag' => get_the_category($post->ID),
+				'post_desc' => mb_strimwidth($data["post_desc"], 0, 100, "..."),
+				'post_date' => date("d/m/Y H:i:s", strtotime($post->post_date_gmt)),
+				'post_link' => get_permalink($post->ID),
+			];
+			$posts[] = array_merge($public);
+		}
+		return $posts;
 	}
-	return $posts;
 }
 
 if (isset($wp_query->query_vars['author'])) {
