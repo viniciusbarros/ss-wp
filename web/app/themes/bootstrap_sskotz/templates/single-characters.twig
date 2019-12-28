@@ -236,15 +236,15 @@
 														<div class="skill-up">
 															<strong class="text-white-50">Level recomendado {{skill.skill_up}}/
 																{% if skill.lv2 is empty %}
-																	{{skill.lv1}}
+																	1
 																{% elseif skill.lv3 is empty %}
-																	{{skill.lv2}}
+																	2
 																{% elseif skill.lv4 is empty %}
-																	{{skill.lv3}}
+																	3
 																{% elseif skill.lv5 is empty %}
-																	{{skill.lv4}}
+																	4
 																{% else %}
-																	{{skill.lv5}}
+																	5
 																{% endif %}
 															</strong>
 														</div>
