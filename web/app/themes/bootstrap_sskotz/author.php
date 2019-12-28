@@ -17,7 +17,11 @@ define('ROLE_MAP', [
 	'author' => 'Autor',
 	'contributor' => 'Contribuidor',
 	'editor' => 'Editor',
-	'subscriber' => 'Assinante'
+	'subscriber' => 'Assinante',
+	'design' => 'Designer',
+	'developer' => 'Desenvolvedor',
+	'publisher' => 'Publicador',
+	'streamer' => 'Streamer'
 ]);
 
 $context          = Timber::context();

@@ -21,7 +21,11 @@ define('ROLE_MAP', [
 	'author' => 'Autor',
 	'contributor' => 'Contribuidor',
 	'editor' => 'Editor',
-	'subscriber' => 'Assinante'
+	'subscriber' => 'Assinante',
+	'design' => 'Designer',
+	'developer' => 'Desenvolvedor',
+	'publisher' => 'Publicador',
+	'streamer' => 'Streamer'
 ]);
 
 $guide_cosmo =  get_category_by_slug('cosmos');
