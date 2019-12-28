@@ -90,7 +90,7 @@ function getUserRolesAsText($user)
 
 function getPostsAuthor($query)
 {
-	if(!empty($query)){
+	if($query->found_posts > 0){
 		foreach ($query as $post) {
 			$data = get_fields($post->ID);
 			$public = [
