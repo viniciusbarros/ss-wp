@@ -143,36 +143,35 @@ function getPostCosmo($query)
 	];
 	
 	$location = '';
-	foreach($data['cosmo_drop_location'] as $lc){
+	foreach($data['cosmo_drop']['location'] as $lc){
 		if($lc == 'Altar'){
-			if(!empty($data['cosmo_drop_days_altar'])){
-				$drop_days = $data['cosmo_drop_days_altar'];
+			if(!empty($data['cosmo_drop']['days_altar'])){
+				$drop_days = $data['cosmo_drop']['days_altar'];
 				$days = "( ";
 				foreach ($drop_days as $day) {
 					$days = $days . $day . ', ';
 				}
 				$days = rtrim($days, ', ');
 				$days .= " )";
-				$location = $location . $lc . "( " . $drop_days . " )" . ", ";
-				$location = rtrim($location, ', ');
+				$location = $location . $lc  . $days  . ', ';
 			}
 		} elseif($lc == 'Titãs'){
-			if(!empty($data['cosmo_drop_days_titan'])){
-				$drop_days = $data['cosmo_drop_days_titan'];
+			if(!empty($data['cosmo_drop']['days_titan'])){
+				$drop_days = $data['cosmo_drop']['days_titan'];
 				$days = "( ";
 				foreach ($drop_days as $day) {
 					$days = $days . $day . ', ';
 				}
 				$days = rtrim($days, ', ');
 				$days .= " )";
-				$location = $location . $lc  . $drop_days  . ", ";
-				$location = rtrim($location, ', ');
+				$location = $location . $lc  . $days  . ', ';
+
 			}
 		} else{
 			$location = $location . $lc . ", ";
-			$location = rtrim($location, ', ');
 		}
 	}
+	$location = rtrim($location, ', ');
 	$cosmo['cosmo_drop_location'] = $location;
 	$cosmo['cosmo_status1_tipo'] = $data['cosmo_status1']['tipo'];
 	$cosmo['cosmo_status1_max'] = $data['cosmo_status1']['max'];
