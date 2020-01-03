@@ -120,6 +120,9 @@ function getPostCharacter($query)
 	$cosmos['star'] = array_merge($star);
 	$character['cosmos'] = array_merge($cosmos);
 	$character['skills'] = array_merge($skills);
+	echo '<pre>';
+	print_r($character);
+	die;
 	return $character;
 }
 

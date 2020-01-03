@@ -82,7 +82,7 @@ $context['att'] = Timber::get_posts([
 ]);
 // Buscar os membros da equipe
 $context['team'] = get_users([
-	'post_per_page' => 6,
+	'numberposts' => 6,
 	'orderby' => 'rand',
 ]);
 
