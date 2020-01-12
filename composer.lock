@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d60ac51ef91e4ca21501d6b3a1eb4da",
+    "content-hash": "ada4deadec4f72ec8e80a6a6551e72bf",
     "packages": [
         {
             "name": "composer/installers",
@@ -624,6 +624,24 @@
             "homepage": "https://wordpress.org/plugins/remove-category-url/"
         },
         {
+            "name": "wpackagist-plugin/ssl-insecure-content-fixer",
+            "version": "2.7.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/ssl-insecure-content-fixer/",
+                "reference": "tags/2.7.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/ssl-insecure-content-fixer.2.7.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/ssl-insecure-content-fixer/"
+        },
+        {
             "name": "wpackagist-plugin/timber-library",
             "version": "1.13.0",
             "source": {
@@ -660,6 +678,24 @@
             "homepage": "https://wordpress.org/plugins/user-role-editor/"
         },
         {
+            "name": "wpackagist-plugin/wordfence",
+            "version": "7.4.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wordfence/",
+                "reference": "tags/7.4.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.4.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wordfence/"
+        },
+        {
             "name": "wpackagist-plugin/wp-mail-smtp-sendgrid-edition",
             "version": "0.10.2",
             "source": {
@@ -676,6 +712,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-mail-smtp-sendgrid-edition/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-super-cache",
+            "version": "1.7.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-super-cache/",
+                "reference": "tags/1.7.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-super-cache.1.7.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-super-cache/"
         },
         {
             "name": "wpackagist-plugin/wp-user-avatar",
